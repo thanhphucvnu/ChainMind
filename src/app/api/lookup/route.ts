@@ -93,24 +93,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Địa chỉ ví không hợp lệ." }, { status: 400 });
   }
 
-  const targetChecksum = getAddress(address);
-  const targetLower = targetChecksum.toLowerCase();
-
-  const entitiesMap = getEntitiesMap();
-  if (entitiesMap.size === 0) {
-    const response: LookupResponse = {
-      address: targetChecksum,
-      network: "ethereum",
-      totalTxFetched: 0,
-      totalMatchedEntities: 0,
-      candidates: [],
-      bestCandidate: null,
-      message:
-        "`entities.json` hiện đang rỗng. Hãy thêm danh sách nhãn (địa chỉ đối tác -> country) để suy đoán.",
-    };
-    return NextResponse.json(response);
-  }
-
   const apiKey = process.env.ETHERSCAN_API_KEY;
   if (!apiKey) {
     return NextResponse.json(
@@ -121,6 +103,11 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
+
+  const targetChecksum = getAddress(address);
+  const targetLower = targetChecksum.toLowerCase();
+
+  const entitiesMap = getEntitiesMap();
 
   const offset = Math.min(maxTx ?? 200, 2000);
 
@@ -175,6 +162,26 @@ export async function POST(req: Request) {
     };
   });
 
+  const unlabeledCounterpartiesSet = new Set<string>();
+  if (txEndpoints.length) {
+    // If entities.json is empty (or missing labels for these counterparties),
+    // we still return the counterparties that would need manual labeling.
+    for (const tx of txEndpoints) {
+      for (const addr of [tx.from, tx.to]) {
+        if (!addr || typeof addr !== "string") continue;
+        if (!isAddress(addr)) continue;
+
+        const addrLower = addr.toLowerCase();
+        if (addrLower === targetLower) continue;
+        if (entitiesMap.size > 0 && entitiesMap.has(addrLower)) continue;
+
+        unlabeledCounterpartiesSet.add(getAddress(addr).toLowerCase());
+        if (unlabeledCounterpartiesSet.size >= 15) break;
+      }
+      if (unlabeledCounterpartiesSet.size >= 15) break;
+    }
+  }
+
   const { candidates, bestCandidate, totalMatchedEntities } = computeCandidates(
     targetLower,
     txEndpoints,
@@ -188,9 +195,15 @@ export async function POST(req: Request) {
     totalMatchedEntities,
     candidates,
     bestCandidate,
-    message: candidates.length
-      ? "Đã suy đoán theo heuristic dựa trên nhãn đối tác."
-      : "Không đủ dữ liệu từ nhãn hiện tại (entities.json) để suy đoán.",
+    message:
+      entitiesMap.size === 0
+        ? "`entities.json` hiện đang rỗng. Hãy thêm danh sách nhãn (địa chỉ đối tác -> country) để suy đoán."
+        : candidates.length
+          ? "Đã suy đoán theo heuristic dựa trên nhãn đối tác."
+          : "Không đủ dữ liệu từ nhãn hiện tại (entities.json) để suy đoán. Xem mục 'đối tác chưa gắn nhãn' để biết cần bổ sung gì.",
+    unlabeledCounterparties: unlabeledCounterpartiesSet.size
+      ? Array.from(unlabeledCounterpartiesSet)
+      : undefined,
   };
 
   cache.set(cacheKey, {

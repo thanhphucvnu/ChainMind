@@ -18,5 +18,6 @@ export type LookupResponse = {
   candidates: CountryCandidate[];
   bestCandidate: CountryCandidate | null;
   message?: string;
+  unlabeledCounterparties?: string[]; // counterparties found in tx endpoints but missing from entities.json
 };
 

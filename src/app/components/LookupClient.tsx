@@ -219,6 +219,39 @@ export default function LookupClient() {
               </div>
             </div>
           ) : null}
+
+          {result.unlabeledCounterparties?.length ? (
+            <div className="rounded-2xl bg-white dark:bg-black/20 ring-1 ring-zinc-200/70 dark:ring-white/10 p-4">
+              <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                Đối tác chưa gắn nhãn
+              </div>
+              <div className="mt-2 text-xs text-zinc-600 dark:text-zinc-400">
+                Các địa chỉ dưới đây xuất hiện trong tx (from/to) nhưng không có trong `entities.json`.
+                Bạn có thể thêm chúng kèm `country` vào `src/data/entities.json`, rồi deploy lại.
+              </div>
+              <div className="mt-3 grid gap-2">
+                {result.unlabeledCounterparties.slice(0, 10).map((addr) => (
+                  <div
+                    key={addr}
+                    className="flex items-center justify-between gap-3 rounded-xl bg-zinc-50 dark:bg-white/5 ring-1 ring-zinc-200/60 dark:ring-white/10 p-2"
+                  >
+                    <div className="text-xs text-zinc-800 dark:text-zinc-200 font-mono">
+                      {addr}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        await navigator.clipboard.writeText(addr);
+                      }}
+                      className="text-xs font-semibold text-indigo-700 dark:text-indigo-300 hover:underline"
+                    >
+                      Copy
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
       ) : null}
 
