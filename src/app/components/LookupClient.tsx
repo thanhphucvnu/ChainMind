@@ -56,12 +56,12 @@ export default function LookupClient() {
     }
   }
 
-  return (
+    return (
     <div className="rounded-2xl bg-white/80 dark:bg-zinc-900/40 ring-1 ring-zinc-200/70 dark:ring-white/10 p-5 sm:p-6">
       <form onSubmit={onSubmit} className="grid gap-4">
         <div className="grid gap-2">
           <label className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
-            Địa chỉ ví (Ethereum)
+            Địa chỉ ví (EVM 0x…)
           </label>
           <input
             value={address}
@@ -72,8 +72,8 @@ export default function LookupClient() {
             className="h-11 rounded-xl bg-zinc-50 dark:bg-black/30 ring-1 ring-zinc-200/70 dark:ring-white/10 px-4 text-sm text-zinc-900 dark:text-zinc-50 placeholder:text-zinc-400 outline-none focus:ring-indigo-500/40"
           />
           <div className="text-xs text-zinc-600 dark:text-zinc-400">
-            Heuristic dựa trên nhãn `entities.json`. Nếu không có nhãn phù
-            hợp, hệ thống sẽ trả “không đủ dữ liệu”.
+            Công cụ sẽ ước lượng timezone dựa trên “giờ hoạt động” (UTC histogram)
+            từ lịch sử giao dịch đa-chain (Ethereum/BSC/Polygon/Arbitrum/Base).
           </div>
         </div>
 
@@ -102,7 +102,7 @@ export default function LookupClient() {
               {loading ? (
                 <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/70 border-t-white" />
               ) : null}
-              {loading ? "Đang suy đoán..." : "Tìm quốc gia"}
+              {loading ? "Đang phân tích..." : "Dự đoán timezone"}
             </span>
           </button>
         </div>
@@ -136,41 +136,38 @@ export default function LookupClient() {
                 </div>
               </div>
               <div className="text-xs text-zinc-600 dark:text-zinc-400">
-                Tx phân tích: <span className="font-semibold">{result.totalTxFetched}</span> ·
-                Nhãn match:{" "}
-                <span className="font-semibold">{result.totalMatchedEntities}</span>
+                Tx phân tích: <span className="font-semibold">{result.totalTxFetched}</span>
               </div>
             </div>
 
             <div className="mt-4">
-              {result.bestCandidate ? (
+              {result.timezoneCandidates?.length ? (
                 <>
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <div className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">
-                        Đề xuất hàng đầu
+                        Timezone khả dĩ nhất
                       </div>
                       <div className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
-                        {result.bestCandidate.country}
+                        {result.timezoneCandidates[0]!.label}
                       </div>
                       <div className="text-sm text-zinc-600 dark:text-zinc-400">
-                        {result.bestCandidate.count} match ·{" "}
-                        {result.bestCandidate.percent.toFixed(1)}%
+                        Score: {result.timezoneCandidates[0]!.score.toFixed(3)}
                       </div>
                     </div>
                     <div className="text-right">
                       <div className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">
-                        Mức tin cậy (heuristic)
+                        Độ tin cậy (heuristic)
                       </div>
                       <div className="text-sm font-semibold text-indigo-700 dark:text-indigo-300">
-                        {result.bestCandidate.percent.toFixed(0)} / 100
+                        {result.timezoneCandidates[0]!.percent.toFixed(0)} / 100
                       </div>
                     </div>
                   </div>
                   <div className="mt-3 h-2 rounded-full bg-zinc-100 dark:bg-white/10 overflow-hidden">
                     <div
                       className="h-full bg-indigo-600"
-                      style={{ width: `${result.bestCandidate.percent}%` }}
+                      style={{ width: `${result.timezoneCandidates[0]!.percent}%` }}
                     />
                   </div>
                 </>
@@ -182,38 +179,27 @@ export default function LookupClient() {
             </div>
           </div>
 
-          {result.candidates.length ? (
+          {result.timezoneCandidates?.length ? (
             <div className="rounded-2xl bg-white dark:bg-black/20 ring-1 ring-zinc-200/70 dark:ring-white/10 p-4">
               <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
-                Các ứng viên (top)
+                Timezone candidates (top)
               </div>
               <div className="mt-3 grid gap-3">
-                {result.candidates.slice(0, 5).map((c) => (
+                {result.timezoneCandidates.slice(0, 5).map((c) => (
                   <div
-                    key={c.country}
+                    key={c.label}
                     className="rounded-xl bg-zinc-50 dark:bg-white/5 ring-1 ring-zinc-200/60 dark:ring-white/10 p-3"
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
-                          {c.country}
+                          {c.label}
                         </div>
                         <div className="text-xs text-zinc-600 dark:text-zinc-400">
-                          {c.count} match · {c.percent.toFixed(1)}%
+                          Score: {c.score.toFixed(3)} · {c.percent.toFixed(1)}%
                         </div>
                       </div>
                     </div>
-                    {c.entities.length ? (
-                      <div className="mt-2 text-xs text-zinc-600 dark:text-zinc-400">
-                        Nhãn mẫu:{" "}
-                        <span className="font-semibold text-zinc-900 dark:text-zinc-50">
-                          {c.entities
-                            .map((e) => e.name ?? e.address)
-                            .slice(0, 3)
-                            .join(", ")}
-                        </span>
-                      </div>
-                    ) : null}
                   </div>
                 ))}
               </div>

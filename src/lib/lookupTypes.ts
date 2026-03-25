@@ -10,14 +10,24 @@ export type CountryCandidate = {
   entities: EntityMatch[];
 };
 
+export type TimezoneCandidate = {
+  offsetHours: number; // e.g. +7
+  label: string; // e.g. "UTC+7"
+  score: number;
+  percent: number; // 0..100 among returned candidates
+};
+
 export type LookupResponse = {
   address: string; // checksummed input
-  network: "ethereum";
-  totalTxFetched: number;
+  network: "multichain-evm";
+  totalTxFetched: number; // summed across chains
   totalMatchedEntities: number;
   candidates: CountryCandidate[];
   bestCandidate: CountryCandidate | null;
   message?: string;
   unlabeledCounterparties?: string[]; // counterparties found in tx endpoints but missing from entities.json
+  timezoneCandidates?: TimezoneCandidate[];
+  perChainTxFetched?: Record<string, number>;
+  utcHourHistogram?: number[]; // length 24, aggregated across chains
 };
 

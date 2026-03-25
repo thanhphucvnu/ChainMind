@@ -6,10 +6,15 @@ Lưu ý: Đây **không** phải suy luận on-chain chắc chắn về quốc g
 
 ## Setup
 
-1. Lấy `ETHERSCAN_API_KEY` từ Etherscan.
+1. Lấy API key từ các explorer (Etherscan-family) tuỳ chain bạn muốn bật:
+   - `ETHERSCAN_API_KEY` (Ethereum)
+   - `BSCSCAN_API_KEY` (BSC)
+   - `POLYGONSCAN_API_KEY` (Polygon)
+   - `ARBISCAN_API_KEY` (Arbitrum)
+   - `BASESCAN_API_KEY` (Base)
 2. Tạo biến môi trường:
-   - Local: tạo file `.env` ở root và thêm `ETHERSCAN_API_KEY=...`
-   - Deploy (Vercel): set Environment Variable `ETHERSCAN_API_KEY`
+   - Local: tạo file `.env` ở root và thêm các key ở trên
+   - Deploy (Render/Vercel): set Environment Variables tương ứng
 3. Cập nhật danh sách nhãn:
    - Sửa file `src/data/entities.json`
    - Format phần tử:
@@ -24,7 +29,8 @@ Lưu ý: Đây **không** phải suy luận on-chain chắc chắn về quốc g
 ]
 ```
 
-Backend lấy tx đầu tiên của ví (theo `maxTx`), rồi đếm các counterparty trùng với `entities.json` để suy ra country “phổ biến nhất”.
+Backend sẽ lấy tx đầu tiên của ví (theo `maxTx`) trên nhiều chain, tạo histogram theo giờ UTC để **ước lượng timezone**.
+Phần `entities.json` vẫn có thể dùng cho heuristic theo nhãn (tuỳ bạn mở rộng tiếp).
 
 ## Run locally
 

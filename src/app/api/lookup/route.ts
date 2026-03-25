@@ -3,6 +3,7 @@ import { getAddress, isAddress } from "ethers";
 import { z } from "zod";
 import { getEntitiesMap } from "@/lib/entities";
 import type { CountryCandidate, LookupResponse } from "@/lib/lookupTypes";
+import { hourHistogramToTimezoneCandidates } from "@/lib/timezone";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -12,10 +13,26 @@ const LookupSchema = z.object({
   maxTx: z.number().int().positive().max(2000).optional(),
 });
 
+type ChainConfig = {
+  keyEnv: string;
+  name: string;
+  apiBase: string;
+};
+
+const CHAINS: ChainConfig[] = [
+  { name: "ethereum", keyEnv: "ETHERSCAN_API_KEY", apiBase: "https://api.etherscan.io/api" },
+  { name: "bsc", keyEnv: "BSCSCAN_API_KEY", apiBase: "https://api.bscscan.com/api" },
+  { name: "polygon", keyEnv: "POLYGONSCAN_API_KEY", apiBase: "https://api.polygonscan.com/api" },
+  { name: "arbitrum", keyEnv: "ARBISCAN_API_KEY", apiBase: "https://api.arbiscan.io/api" },
+  { name: "base", keyEnv: "BASESCAN_API_KEY", apiBase: "https://api.basescan.org/api" },
+];
+
 const cache = new Map<
   string,
   { expiresAt: number; value: LookupResponse; cachedAt: number }
 >();
+
+type TxEndpoint = { from?: string | null; to?: string | null; timeStamp?: number | null };
 
 function computeCandidates(
   targetLower: string,
@@ -75,6 +92,51 @@ function computeCandidates(
   };
 }
 
+async function fetchEtherscanFamilyTxList(args: {
+  apiBase: string;
+  apiKey: string;
+  address: string;
+  offset: number;
+}): Promise<TxEndpoint[]> {
+  const url = new URL(args.apiBase);
+  url.searchParams.set("module", "account");
+  url.searchParams.set("action", "txlist");
+  url.searchParams.set("address", args.address);
+  url.searchParams.set("startblock", "0");
+  url.searchParams.set("endblock", "99999999");
+  url.searchParams.set("page", "1");
+  url.searchParams.set("offset", String(args.offset));
+  url.searchParams.set("sort", "desc");
+  url.searchParams.set("apikey", args.apiKey);
+
+  const res = await fetch(url.toString(), { cache: "no-store" });
+  if (!res.ok) return [];
+
+  type ExplorerResponse = { status?: string; message?: string; result?: unknown };
+  const data = (await res.json().catch(() => null)) as ExplorerResponse | null;
+  const result = data?.result;
+  if (!Array.isArray(result)) return [];
+
+  return (result as unknown[]).map((tx) => {
+    if (!tx || typeof tx !== "object") return { from: null, to: null, timeStamp: null };
+    const obj = tx as Record<string, unknown>;
+
+    const tsRaw = obj.timeStamp;
+    const ts =
+      typeof tsRaw === "string"
+        ? Number(tsRaw)
+        : typeof tsRaw === "number"
+          ? tsRaw
+          : null;
+
+    return {
+      from: typeof obj.from === "string" ? obj.from : null,
+      to: typeof obj.to === "string" ? obj.to : null,
+      timeStamp: Number.isFinite(ts) ? ts : null,
+    };
+  });
+}
+
 export async function POST(req: Request) {
   const body = await req.json().catch(() => null);
   const parsed = LookupSchema.safeParse(body);
@@ -93,17 +155,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Địa chỉ ví không hợp lệ." }, { status: 400 });
   }
 
-  const apiKey = process.env.ETHERSCAN_API_KEY;
-  if (!apiKey) {
-    return NextResponse.json(
-      {
-        error:
-          "Thiếu biến môi trường `ETHERSCAN_API_KEY`. Hãy thêm trong môi trường deploy (Vercel/Env).",
-      },
-      { status: 500 }
-    );
-  }
-
   const targetChecksum = getAddress(address);
   const targetLower = targetChecksum.toLowerCase();
 
@@ -117,49 +168,50 @@ export async function POST(req: Request) {
     return NextResponse.json(cached.value);
   }
 
-  const etherscanUrl = new URL("https://api.etherscan.io/api");
-  etherscanUrl.searchParams.set("module", "account");
-  etherscanUrl.searchParams.set("action", "txlist");
-  etherscanUrl.searchParams.set("address", targetChecksum);
-  etherscanUrl.searchParams.set("startblock", "0");
-  etherscanUrl.searchParams.set("endblock", "99999999");
-  etherscanUrl.searchParams.set("page", "1");
-  etherscanUrl.searchParams.set("offset", String(offset));
-  etherscanUrl.searchParams.set("sort", "desc");
-  etherscanUrl.searchParams.set("apikey", apiKey);
+  const enabledChains = CHAINS.map((c) => ({
+    ...c,
+    apiKey: process.env[c.keyEnv],
+  })).filter((c) => typeof c.apiKey === "string" && c.apiKey.length > 0);
 
-  const res = await fetch(etherscanUrl.toString(), { cache: "no-store" });
-  if (!res.ok) {
-    return NextResponse.json({ error: "Không fetch được dữ liệu từ Etherscan." }, { status: 502 });
-  }
-
-  type EtherscanResponse = {
-    status?: string;
-    message?: string;
-    result?: unknown;
-  };
-
-  const data = (await res.json().catch(() => null)) as EtherscanResponse | null;
-
-  const result = data?.result;
-  if (!Array.isArray(result)) {
+  if (enabledChains.length === 0) {
     return NextResponse.json(
       {
         error:
-          "Etherscan trả về dữ liệu không mong đợi. Hãy thử lại hoặc kiểm tra `ETHERSCAN_API_KEY`.",
-        details: data?.message ?? null,
+          "Thiếu API key explorer. Hãy set ít nhất 1 biến: ETHERSCAN_API_KEY / BSCSCAN_API_KEY / POLYGONSCAN_API_KEY / ARBISCAN_API_KEY / BASESCAN_API_KEY",
       },
-      { status: 502 }
+      { status: 500 }
     );
   }
 
-  const txEndpoints = (result as unknown[]).map((tx) => {
-    if (!tx || typeof tx !== "object") return { from: null, to: null };
-    const obj = tx as Record<string, unknown>;
-    return {
-      from: typeof obj.from === "string" ? obj.from : null,
-      to: typeof obj.to === "string" ? obj.to : null,
-    };
+  const perChainTxFetched: Record<string, number> = {};
+  const allTx: TxEndpoint[] = [];
+
+  // Keep it sequential to be friendlier to free-tier rate limits.
+  for (const chain of enabledChains) {
+    const txs = await fetchEtherscanFamilyTxList({
+      apiBase: chain.apiBase,
+      apiKey: chain.apiKey as string,
+      address: targetChecksum,
+      offset,
+    });
+    perChainTxFetched[chain.name] = txs.length;
+    allTx.push(...txs);
+  }
+
+  const txEndpoints = allTx.map((t) => ({ from: t.from ?? null, to: t.to ?? null }));
+
+  const utcHourHistogram = new Array<number>(24).fill(0);
+  for (const t of allTx) {
+    if (!t.timeStamp || !Number.isFinite(t.timeStamp)) continue;
+    const d = new Date(t.timeStamp * 1000);
+    const h = d.getUTCHours();
+    utcHourHistogram[h] = (utcHourHistogram[h] ?? 0) + 1;
+  }
+
+  const timezoneCandidates = hourHistogramToTimezoneCandidates(utcHourHistogram, {
+    topK: 5,
+    activeStartHourLocal: 8,
+    activeEndHourLocal: 23,
   });
 
   const unlabeledCounterpartiesSet = new Set<string>();
@@ -188,22 +240,25 @@ export async function POST(req: Request) {
     entitiesMap
   );
 
+  const totalTxFetched = Object.values(perChainTxFetched).reduce((a, b) => a + b, 0);
+
   const response: LookupResponse = {
     address: targetChecksum,
-    network: "ethereum",
-    totalTxFetched: txEndpoints.length,
+    network: "multichain-evm",
+    totalTxFetched,
     totalMatchedEntities,
     candidates,
     bestCandidate,
     message:
-      entitiesMap.size === 0
-        ? "`entities.json` hiện đang rỗng. Hãy thêm danh sách nhãn (địa chỉ đối tác -> country) để suy đoán."
-        : candidates.length
-          ? "Đã suy đoán theo heuristic dựa trên nhãn đối tác."
-          : "Không đủ dữ liệu từ nhãn hiện tại (entities.json) để suy đoán. Xem mục 'đối tác chưa gắn nhãn' để biết cần bổ sung gì.",
+      timezoneCandidates.length
+        ? "Đã ước lượng timezone từ histogram giờ hoạt động (UTC) trên nhiều chain."
+        : "Không đủ giao dịch (hoặc thiếu API key explorer) để ước lượng timezone.",
     unlabeledCounterparties: unlabeledCounterpartiesSet.size
       ? Array.from(unlabeledCounterpartiesSet)
       : undefined,
+    timezoneCandidates: timezoneCandidates.length ? timezoneCandidates : undefined,
+    perChainTxFetched,
+    utcHourHistogram,
   };
 
   cache.set(cacheKey, {
