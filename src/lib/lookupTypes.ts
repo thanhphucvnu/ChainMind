@@ -29,5 +29,9 @@ export type LookupResponse = {
   timezoneCandidates?: TimezoneCandidate[];
   perChainTxFetched?: Record<string, number>;
   utcHourHistogram?: number[]; // length 24, aggregated across chains
+  build?: {
+    commit?: string;
+    service?: string;
+  };
 };
 

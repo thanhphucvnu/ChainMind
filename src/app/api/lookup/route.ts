@@ -259,6 +259,13 @@ export async function POST(req: Request) {
     timezoneCandidates: timezoneCandidates.length ? timezoneCandidates : undefined,
     perChainTxFetched,
     utcHourHistogram,
+    build: {
+      commit:
+        process.env.RENDER_GIT_COMMIT ??
+        process.env.VERCEL_GIT_COMMIT_SHA ??
+        process.env.GITHUB_SHA,
+      service: process.env.RENDER_SERVICE_NAME ?? process.env.VERCEL,
+    },
   };
 
   cache.set(cacheKey, {
