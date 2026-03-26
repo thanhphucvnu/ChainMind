@@ -34,6 +34,14 @@ const cache = new Map<
 
 type TxEndpoint = { from?: string | null; to?: string | null; timeStamp?: number | null };
 type EtherscanAction = "txlist" | "txlistinternal" | "tokentx";
+type EtherscanFetchResult = {
+  txs: TxEndpoint[];
+  ok: boolean;
+  status?: string;
+  message?: string;
+  resultType?: string;
+  note?: string;
+};
 
 function computeCandidates(
   targetLower: string,
@@ -99,7 +107,7 @@ async function fetchEtherscanFamilyTxList(args: {
   address: string;
   offset: number;
   action?: EtherscanAction;
-}): Promise<TxEndpoint[]> {
+}): Promise<EtherscanFetchResult> {
   const url = new URL(args.apiBase);
   url.searchParams.set("module", "account");
   url.searchParams.set("action", args.action ?? "txlist");
@@ -112,14 +120,45 @@ async function fetchEtherscanFamilyTxList(args: {
   url.searchParams.set("apikey", args.apiKey);
 
   const res = await fetch(url.toString(), { cache: "no-store" });
-  if (!res.ok) return [];
+  if (!res.ok) {
+    return {
+      txs: [],
+      ok: false,
+      status: String(res.status),
+      message: "HTTP error from Etherscan",
+      resultType: "http_error",
+      note: `status=${res.status}`,
+    };
+  }
 
   type ExplorerResponse = { status?: string; message?: string; result?: unknown };
   const data = (await res.json().catch(() => null)) as ExplorerResponse | null;
   const result = data?.result;
-  if (!Array.isArray(result)) return [];
+  if (!Array.isArray(result)) {
+    const resultType =
+      result === null
+        ? "null"
+        : result === undefined
+          ? "undefined"
+          : Array.isArray(result)
+            ? "array"
+            : typeof result;
+    const asString = typeof result === "string" ? result : "";
+    const lower = asString.toLowerCase();
+    const noTx =
+      lower.includes("no transactions found") ||
+      lower.includes("no records found");
+    return {
+      txs: [],
+      ok: noTx,
+      status: data?.status,
+      message: data?.message,
+      resultType,
+      note: asString || undefined,
+    };
+  }
 
-  return (result as unknown[]).map((tx) => {
+  const txs = (result as unknown[]).map((tx) => {
     if (!tx || typeof tx !== "object") return { from: null, to: null, timeStamp: null };
     const obj = tx as Record<string, unknown>;
 
@@ -137,6 +176,14 @@ async function fetchEtherscanFamilyTxList(args: {
       timeStamp: Number.isFinite(ts) ? ts : null,
     };
   });
+
+  return {
+    txs,
+    ok: true,
+    status: data?.status,
+    message: data?.message,
+    resultType: "array",
+  };
 }
 
 export async function POST(req: Request) {
@@ -181,14 +228,14 @@ export async function POST(req: Request) {
     );
   }
 
-  const txs = await fetchEtherscanFamilyTxList({
+  const txsResult = await fetchEtherscanFamilyTxList({
     apiBase: ETHERSCAN.apiBase,
     apiKey,
     address: targetChecksum,
     offset,
   });
 
-  const internalTxs = await fetchEtherscanFamilyTxList({
+  const internalTxsResult = await fetchEtherscanFamilyTxList({
     apiBase: ETHERSCAN.apiBase,
     apiKey,
     address: targetChecksum,
@@ -196,13 +243,17 @@ export async function POST(req: Request) {
     action: "txlistinternal",
   });
 
-  const tokenTxs = await fetchEtherscanFamilyTxList({
+  const tokenTxsResult = await fetchEtherscanFamilyTxList({
     apiBase: ETHERSCAN.apiBase,
     apiKey,
     address: targetChecksum,
     offset,
     action: "tokentx",
   });
+
+  const txs = txsResult.txs;
+  const internalTxs = internalTxsResult.txs;
+  const tokenTxs = tokenTxsResult.txs;
 
   const perChainTxFetched: Record<string, number> = {
     [`${ETHERSCAN.name}:txlist`]: txs.length,
@@ -304,6 +355,29 @@ export async function POST(req: Request) {
         process.env.VERCEL_GIT_COMMIT_SHA ??
         process.env.GITHUB_SHA,
       service: process.env.RENDER_SERVICE_NAME ?? process.env.VERCEL,
+    },
+    etherscanDiagnostics: {
+      txlist: {
+        ok: txsResult.ok,
+        status: txsResult.status,
+        message: txsResult.message,
+        resultType: txsResult.resultType,
+        note: txsResult.note,
+      },
+      txlistinternal: {
+        ok: internalTxsResult.ok,
+        status: internalTxsResult.status,
+        message: internalTxsResult.message,
+        resultType: internalTxsResult.resultType,
+        note: internalTxsResult.note,
+      },
+      tokentx: {
+        ok: tokenTxsResult.ok,
+        status: tokenTxsResult.status,
+        message: tokenTxsResult.message,
+        resultType: tokenTxsResult.resultType,
+        note: tokenTxsResult.note,
+      },
     },
   };
 

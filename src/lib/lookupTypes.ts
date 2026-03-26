@@ -35,6 +35,16 @@ export type LookupResponse = {
     commit?: string;
     service?: string;
   };
+  etherscanDiagnostics?: Record<
+    string,
+    {
+      ok: boolean;
+      status?: string;
+      message?: string;
+      resultType?: string;
+      note?: string;
+    }
+  >;
 };
 
 export type CountryGuessCandidate = {
