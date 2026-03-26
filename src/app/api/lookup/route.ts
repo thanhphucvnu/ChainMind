@@ -232,17 +232,19 @@ export async function POST(req: Request) {
   });
 
   const totalTxFetched = Object.values(perChainTxFetched).reduce((a, b) => a + b, 0);
+  // Always return candidates for country prediction.
+  // If Etherscan returned txs but timestamps couldn't be used, hourHistogramToTimezoneCandidates()
+  // will use fallback prior; if Etherscan returned nothing (rate limit / transient issue),
+  // we also still use prior to avoid returning "not enough data" message.
   const timezoneCandidatesWithFallback =
     timezoneCandidates.length
       ? timezoneCandidates
-      : totalTxFetched === 0
-        ? []
-        : hourHistogramToTimezoneCandidates(utcHourHistogram, {
-            topK: 5,
-            activeStartHourLocal: 8,
-            activeEndHourLocal: 23,
-            fallbackPrior: true,
-          });
+      : hourHistogramToTimezoneCandidates(utcHourHistogram, {
+          topK: 5,
+          activeStartHourLocal: 8,
+          activeEndHourLocal: 23,
+          fallbackPrior: true,
+        });
 
   const { countryCandidates, bestCountry } =
     timezoneCandidatesToCountryCandidates(timezoneCandidatesWithFallback, 5);
@@ -281,11 +283,11 @@ export async function POST(req: Request) {
     candidates,
     bestCandidate,
     message:
-      timezoneCandidatesWithFallback.length
+      totalTxFetched > 0
         ? timezoneCandidates.length
-          ? "Đã ước lượng timezone (proxy) từ lịch sử tx trên Ethereum và suy ra quốc gia theo mapping UTC offset."
+          ? "Đã ước lượng quốc gia theo mapping UTC offset từ histogram giờ hoạt động (proxy)."
           : "Không suy ra timezone từ histogram (thiếu timestamp). Dùng fallback prior theo UTC offset để trả quốc gia gần đúng."
-        : "Không đủ dữ liệu từ Etherscan (txlist + internal + token tx) để ước lượng quốc gia.",
+        : "Etherscan có thể trả rỗng (rate limit / transient issue). Dùng prior theo UTC offset để trả quốc gia gần đúng.",
     unlabeledCounterparties: unlabeledCounterpartiesSet.size
       ? Array.from(unlabeledCounterpartiesSet)
       : undefined,
@@ -305,11 +307,15 @@ export async function POST(req: Request) {
     },
   };
 
-  cache.set(cacheKey, {
-    value: response,
-    cachedAt: Date.now(),
-    expiresAt: Date.now() + 1000 * 60 * 10, // 10 phút
-  });
+  // Avoid caching "empty tx" results too aggressively. If Etherscan had a transient issue,
+  // caching it would keep returning "no data" for 10 minutes.
+  if (totalTxFetched > 0) {
+    cache.set(cacheKey, {
+      value: response,
+      cachedAt: Date.now(),
+      expiresAt: Date.now() + 1000 * 60 * 10, // 10 phút
+    });
+  }
 
   return NextResponse.json(response);
 }
