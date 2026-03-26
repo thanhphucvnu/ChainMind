@@ -14,6 +14,7 @@ export default function LookupClient() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<LookupResponse | null>(null);
+  const [activeTab, setActiveTab] = useState<"summary" | "txs">("summary");
 
   const canSubmit = useMemo(() => {
     const v = address.trim();
@@ -24,6 +25,7 @@ export default function LookupClient() {
     e.preventDefault();
     setError(null);
     setResult(null);
+    setActiveTab("summary");
 
     const v = address.trim();
     if (!/^0x[a-fA-F0-9]{40}$/.test(v)) {
@@ -117,6 +119,33 @@ export default function LookupClient() {
 
       {result ? (
         <div className="mt-6 grid gap-4">
+          <div className="inline-flex rounded-xl bg-zinc-100 dark:bg-white/10 p-1 w-fit">
+            <button
+              type="button"
+              onClick={() => setActiveTab("summary")}
+              className={`px-3 py-1.5 text-xs font-semibold rounded-lg ${
+                activeTab === "summary"
+                  ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                  : "text-zinc-600 dark:text-zinc-400"
+              }`}
+            >
+              Summary
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab("txs")}
+              className={`px-3 py-1.5 text-xs font-semibold rounded-lg ${
+                activeTab === "txs"
+                  ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                  : "text-zinc-600 dark:text-zinc-400"
+              }`}
+            >
+              Transactions ({result.totalTxFetched})
+            </button>
+          </div>
+
+          {activeTab === "summary" ? (
+            <>
           <div className="rounded-2xl bg-white dark:bg-black/20 ring-1 ring-zinc-200/70 dark:ring-white/10 p-4">
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
               <div>
@@ -244,6 +273,47 @@ export default function LookupClient() {
               </div>
             </div>
           ) : null}
+            </>
+          ) : (
+            <div className="rounded-2xl bg-white dark:bg-black/20 ring-1 ring-zinc-200/70 dark:ring-white/10 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                  Transactions scanned
+                </div>
+                <div className="text-xs text-zinc-600 dark:text-zinc-400">
+                  Total scanned: <span className="font-semibold">{result.totalTxFetched}</span>
+                </div>
+              </div>
+              {result.scannedTransactions?.length ? (
+                <div className="mt-3 grid gap-2 max-h-[420px] overflow-auto pr-1">
+                  {result.scannedTransactions.map((tx) => (
+                    <div
+                      key={`${tx.source}-${tx.hash}`}
+                      className="rounded-xl bg-zinc-50 dark:bg-white/5 ring-1 ring-zinc-200/60 dark:ring-white/10 p-3"
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="text-xs font-mono text-zinc-700 dark:text-zinc-300 truncate">
+                          {tx.hash}
+                        </div>
+                        <div className="text-[11px] text-zinc-600 dark:text-zinc-400 shrink-0">
+                          {tx.source}
+                        </div>
+                      </div>
+                      <div className="mt-1 text-[11px] text-zinc-600 dark:text-zinc-400">
+                        {tx.timeStamp
+                          ? new Date(tx.timeStamp * 1000).toLocaleString()
+                          : "No timestamp"}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="mt-3 text-xs text-zinc-600 dark:text-zinc-400">
+                  Không có transaction nào trong response hiện tại.
+                </div>
+              )}
+            </div>
+          )}
         </div>
       ) : null}
 

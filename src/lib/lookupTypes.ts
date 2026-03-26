@@ -64,6 +64,13 @@ export type LookupResponse = {
       note?: string;
     }
   >;
+  scannedTransactions?: Array<{
+    hash: string;
+    source: "txlist" | "txlistinternal" | "tokentx";
+    timeStamp?: number | null;
+    from?: string | null;
+    to?: string | null;
+  }>;
 };
 
 export type CountryGuessCandidate = {

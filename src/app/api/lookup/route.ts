@@ -34,7 +34,12 @@ const cache = new Map<
   { expiresAt: number; value: LookupResponse; cachedAt: number }
 >();
 
-type TxEndpoint = { from?: string | null; to?: string | null; timeStamp?: number | null };
+type TxEndpoint = {
+  hash?: string | null;
+  from?: string | null;
+  to?: string | null;
+  timeStamp?: number | null;
+};
 type EtherscanAction = "txlist" | "txlistinternal" | "tokentx";
 type EtherscanFetchResult = {
   txs: TxEndpoint[];
@@ -399,6 +404,12 @@ async function fetchEtherscanFamilyTxList(args: {
           : null;
 
     return {
+      hash:
+        typeof obj.hash === "string"
+          ? obj.hash
+          : typeof obj.transactionHash === "string"
+            ? obj.transactionHash
+            : null,
       from: typeof obj.from === "string" ? obj.from : null,
       to: typeof obj.to === "string" ? obj.to : null,
       timeStamp: Number.isFinite(ts) ? ts : null,
@@ -495,6 +506,21 @@ export async function POST(req: Request) {
   // Combine all available event types so a wallet with only token/internal activity
   // still gets a prediction instead of "not enough tx".
   const allTx: TxEndpoint[] = [...txs, ...internalTxs, ...tokenTxs];
+  const scannedTransactions = [
+    ...txs.map((t) => ({ ...t, source: "txlist" as const })),
+    ...internalTxs.map((t) => ({ ...t, source: "txlistinternal" as const })),
+    ...tokenTxs.map((t) => ({ ...t, source: "tokentx" as const })),
+  ]
+    .filter((t) => typeof t.hash === "string" && t.hash.length > 0)
+    .sort((a, b) => (b.timeStamp ?? 0) - (a.timeStamp ?? 0))
+    .slice(0, 120)
+    .map((t) => ({
+      hash: t.hash as string,
+      source: t.source,
+      timeStamp: t.timeStamp ?? null,
+      from: t.from ?? null,
+      to: t.to ?? null,
+    }));
 
   const txEndpoints = allTx.map((t) => ({ from: t.from ?? null, to: t.to ?? null }));
 
@@ -693,6 +719,7 @@ export async function POST(req: Request) {
         note: tokenTxsResult.note,
       },
     },
+    scannedTransactions: scannedTransactions.length ? scannedTransactions : undefined,
   };
 
   // Avoid caching "empty tx" results too aggressively. If Etherscan had a transient issue,
