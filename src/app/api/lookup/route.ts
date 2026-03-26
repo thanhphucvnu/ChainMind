@@ -18,13 +18,15 @@ type ChainConfig = {
   keyEnv: string;
   name: string;
   apiBase: string;
+  chainId: string;
 };
 
 // For now we only infer using Ethereum via Etherscan (single chain).
 const ETHERSCAN: ChainConfig = {
   name: "ethereum",
   keyEnv: "ETHERSCAN_API_KEY",
-  apiBase: "https://api.etherscan.io/api",
+  apiBase: "https://api.etherscan.io/v2/api",
+  chainId: "1",
 };
 
 const cache = new Map<
@@ -103,12 +105,14 @@ function computeCandidates(
 
 async function fetchEtherscanFamilyTxList(args: {
   apiBase: string;
+  chainId: string;
   apiKey: string;
   address: string;
   offset: number;
   action?: EtherscanAction;
 }): Promise<EtherscanFetchResult> {
   const url = new URL(args.apiBase);
+  url.searchParams.set("chainid", args.chainId);
   url.searchParams.set("module", "account");
   url.searchParams.set("action", args.action ?? "txlist");
   url.searchParams.set("address", args.address);
@@ -230,6 +234,7 @@ export async function POST(req: Request) {
 
   const txsResult = await fetchEtherscanFamilyTxList({
     apiBase: ETHERSCAN.apiBase,
+    chainId: ETHERSCAN.chainId,
     apiKey,
     address: targetChecksum,
     offset,
@@ -237,6 +242,7 @@ export async function POST(req: Request) {
 
   const internalTxsResult = await fetchEtherscanFamilyTxList({
     apiBase: ETHERSCAN.apiBase,
+    chainId: ETHERSCAN.chainId,
     apiKey,
     address: targetChecksum,
     offset,
@@ -245,6 +251,7 @@ export async function POST(req: Request) {
 
   const tokenTxsResult = await fetchEtherscanFamilyTxList({
     apiBase: ETHERSCAN.apiBase,
+    chainId: ETHERSCAN.chainId,
     apiKey,
     address: targetChecksum,
     offset,
