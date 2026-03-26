@@ -19,7 +19,7 @@ export type TimezoneCandidate = {
 
 export type LookupResponse = {
   address: string; // checksummed input
-  network: "multichain-evm";
+  network: "ethereum" | "multichain-evm";
   totalTxFetched: number; // summed across chains
   totalMatchedEntities: number;
   candidates: CountryCandidate[];

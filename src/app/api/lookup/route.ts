@@ -20,13 +20,12 @@ type ChainConfig = {
   apiBase: string;
 };
 
-const CHAINS: ChainConfig[] = [
-  { name: "ethereum", keyEnv: "ETHERSCAN_API_KEY", apiBase: "https://api.etherscan.io/api" },
-  { name: "bsc", keyEnv: "BSCSCAN_API_KEY", apiBase: "https://api.bscscan.com/api" },
-  { name: "polygon", keyEnv: "POLYGONSCAN_API_KEY", apiBase: "https://api.polygonscan.com/api" },
-  { name: "arbitrum", keyEnv: "ARBISCAN_API_KEY", apiBase: "https://api.arbiscan.io/api" },
-  { name: "base", keyEnv: "BASESCAN_API_KEY", apiBase: "https://api.basescan.org/api" },
-];
+// For now we only infer using Ethereum via Etherscan (single chain).
+const ETHERSCAN: ChainConfig = {
+  name: "ethereum",
+  keyEnv: "ETHERSCAN_API_KEY",
+  apiBase: "https://api.etherscan.io/api",
+};
 
 const cache = new Map<
   string,
@@ -169,35 +168,29 @@ export async function POST(req: Request) {
     return NextResponse.json(cached.value);
   }
 
-  const enabledChains = CHAINS.map((c) => ({
-    ...c,
-    apiKey: process.env[c.keyEnv],
-  })).filter((c) => typeof c.apiKey === "string" && c.apiKey.length > 0);
-
-  if (enabledChains.length === 0) {
+  const apiKey = process.env[ETHERSCAN.keyEnv];
+  if (!apiKey || typeof apiKey !== "string") {
     return NextResponse.json(
       {
         error:
-          "Thiếu API key explorer. Hãy set ít nhất 1 biến: ETHERSCAN_API_KEY / BSCSCAN_API_KEY / POLYGONSCAN_API_KEY / ARBISCAN_API_KEY / BASESCAN_API_KEY",
+          "Thiếu biến môi trường `ETHERSCAN_API_KEY`. Vui lòng set key Etherscan rồi redeploy.",
       },
       { status: 500 }
     );
   }
 
-  const perChainTxFetched: Record<string, number> = {};
-  const allTx: TxEndpoint[] = [];
+  const txs = await fetchEtherscanFamilyTxList({
+    apiBase: ETHERSCAN.apiBase,
+    apiKey,
+    address: targetChecksum,
+    offset,
+  });
 
-  // Keep it sequential to be friendlier to free-tier rate limits.
-  for (const chain of enabledChains) {
-    const txs = await fetchEtherscanFamilyTxList({
-      apiBase: chain.apiBase,
-      apiKey: chain.apiKey as string,
-      address: targetChecksum,
-      offset,
-    });
-    perChainTxFetched[chain.name] = txs.length;
-    allTx.push(...txs);
-  }
+  const perChainTxFetched: Record<string, number> = {
+    [ETHERSCAN.name]: txs.length,
+  };
+
+  const allTx: TxEndpoint[] = txs;
 
   const txEndpoints = allTx.map((t) => ({ from: t.from ?? null, to: t.to ?? null }));
 
@@ -260,7 +253,7 @@ export async function POST(req: Request) {
 
   const response: LookupResponse = {
     address: targetChecksum,
-    network: "multichain-evm",
+    network: "ethereum",
     totalTxFetched,
     totalMatchedEntities,
     candidates,
@@ -268,9 +261,9 @@ export async function POST(req: Request) {
     message:
       timezoneCandidatesWithFallback.length
         ? timezoneCandidates.length
-          ? "Đã ước lượng timezone (proxy) và suy ra quốc gia khả dĩ theo mapping UTC offset."
+          ? "Đã ước lượng timezone (proxy) từ lịch sử tx trên Ethereum và suy ra quốc gia theo mapping UTC offset."
           : "Không suy ra timezone từ histogram (thiếu timestamp). Dùng fallback prior theo UTC offset để trả quốc gia gần đúng."
-        : "Không đủ dữ liệu để ước lượng quốc gia.",
+        : "Không đủ giao dịch để ước lượng quốc gia từ Ethereum.",
     unlabeledCounterparties: unlabeledCounterpartiesSet.size
       ? Array.from(unlabeledCounterpartiesSet)
       : undefined,
