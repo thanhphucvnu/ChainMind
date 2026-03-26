@@ -100,6 +100,175 @@ function blendCountrySignals(
   };
 }
 
+function clamp01(v: number): number {
+  if (!Number.isFinite(v)) return 0;
+  if (v < 0) return 0;
+  if (v > 1) return 1;
+  return v;
+}
+
+function normalizedEntropy24(hist: number[]): number {
+  const h = hist.slice(0, 24);
+  while (h.length < 24) h.push(0);
+  const total = h.reduce((a, b) => a + b, 0);
+  if (total <= 0) return 1;
+  let ent = 0;
+  for (const c of h) {
+    if (c <= 0) continue;
+    const p = c / total;
+    ent -= p * Math.log(p);
+  }
+  return clamp01(ent / Math.log(24));
+}
+
+function maxConsecutiveSleepHours(hist: number[]): number {
+  const h = hist.slice(0, 24);
+  while (h.length < 24) h.push(0);
+  const total = h.reduce((a, b) => a + b, 0);
+  if (total <= 0) return 0;
+  const avg = total / 24;
+  const threshold = avg * 0.35;
+  let best = 0;
+  let cur = 0;
+  for (let i = 0; i < 48; i += 1) {
+    const v = h[i % 24] ?? 0;
+    if (v <= threshold) {
+      cur += 1;
+      if (cur > best) best = cur;
+    } else {
+      cur = 0;
+    }
+  }
+  return Math.min(best, 24);
+}
+
+function classifyWalletType(args: {
+  totalTx: number;
+  uniqueCounterparties: number;
+  timezoneEntropy: number;
+  sleepHours: number;
+  totalMatchedEntities: number;
+  isContractLike: boolean;
+}): { walletType: "human" | "bot" | "exchange" | "contract"; score: number } {
+  if (args.isContractLike) return { walletType: "contract", score: 0.95 };
+  if (args.totalMatchedEntities >= 20 || args.uniqueCounterparties >= 150) {
+    return { walletType: "exchange", score: 0.8 };
+  }
+  if (args.totalTx >= 80 && args.timezoneEntropy > 0.9 && args.sleepHours < 3) {
+    return { walletType: "bot", score: 0.75 };
+  }
+  return { walletType: "human", score: 0.7 };
+}
+
+function baseWeightsByWalletType(
+  walletType: "human" | "bot" | "exchange" | "contract"
+): { timezone: number; counterparty: number; token: number; protocol: number } {
+  switch (walletType) {
+    case "bot":
+      return { timezone: 0.12, counterparty: 0.33, token: 0.30, protocol: 0.25 };
+    case "exchange":
+      return { timezone: 0.08, counterparty: 0.56, token: 0.22, protocol: 0.14 };
+    case "contract":
+      return { timezone: 0.05, counterparty: 0.45, token: 0.30, protocol: 0.20 };
+    case "human":
+    default:
+      return { timezone: 0.45, counterparty: 0.30, token: 0.15, protocol: 0.10 };
+  }
+}
+
+function reliabilityFromVolume(n: number, ref = 120): number {
+  if (n <= 0) return 0;
+  return clamp01(Math.log(1 + n) / Math.log(1 + ref));
+}
+
+function normalizeWeights(w: { timezone: number; counterparty: number; token: number; protocol: number }) {
+  const s = w.timezone + w.counterparty + w.token + w.protocol;
+  if (s <= 0) return { timezone: 0.25, counterparty: 0.25, token: 0.25, protocol: 0.25 };
+  return {
+    timezone: w.timezone / s,
+    counterparty: w.counterparty / s,
+    token: w.token / s,
+    protocol: w.protocol / s,
+  };
+}
+
+function fuseCountriesProbabilistically(args: {
+  timezoneCountries: CountryGuessCandidate[];
+  counterpartyCountries: CountryCandidate[];
+  signalWeights: { timezone: number; counterparty: number; token: number; protocol: number };
+  topK?: number;
+}): { topCountries: CountryGuessCandidate[]; bestCountry: CountryGuessCandidate | null } {
+  const topK = args.topK ?? 5;
+  const all = new Set<string>();
+  for (const c of args.timezoneCountries) all.add(c.country);
+  for (const c of args.counterpartyCountries) all.add(c.country);
+  if (all.size === 0) all.add("United States");
+
+  const eps = 1e-6;
+  const tzP = new Map(args.timezoneCountries.map((c) => [c.country, c.percent / 100]));
+  const cpP = new Map(args.counterpartyCountries.map((c) => [c.country, c.percent / 100]));
+
+  const rows: CountryGuessCandidate[] = [];
+  for (const country of all) {
+    const pTz = Math.max(eps, tzP.get(country) ?? eps);
+    const pCp = Math.max(eps, cpP.get(country) ?? eps);
+    // token/protocol placeholders: until dedicated signal maps are added, keep neutral impact.
+    const pToken = 0.5;
+    const pProtocol = 0.5;
+    const logScore =
+      args.signalWeights.timezone * Math.log(pTz) +
+      args.signalWeights.counterparty * Math.log(pCp) +
+      args.signalWeights.token * Math.log(pToken) +
+      args.signalWeights.protocol * Math.log(pProtocol);
+
+    const ref = args.timezoneCountries.find((x) => x.country === country);
+    rows.push({
+      country,
+      offsetHours: ref?.offsetHours ?? 0,
+      timezoneLabel: ref?.timezoneLabel ?? "Prior",
+      score: logScore,
+      percent: 0,
+    });
+  }
+
+  rows.sort((a, b) => b.score - a.score);
+  const top = rows.slice(0, topK);
+  // softmax on log-score (stable)
+  const maxLog = Math.max(...top.map((x) => x.score));
+  const exps = top.map((x) => Math.exp(x.score - maxLog));
+  const sumExp = exps.reduce((a, b) => a + b, 0) || 1;
+  const ranked = top.map((x, i) => ({
+    ...x,
+    percent: (exps[i] / sumExp) * 100,
+  }));
+
+  return {
+    topCountries: ranked,
+    bestCountry: ranked.length ? ranked[0] : null,
+  };
+}
+
+function calibratedConfidence(args: {
+  topCountries: CountryGuessCandidate[];
+  reliabilities: { timezone: number; counterparty: number; token: number; protocol: number };
+  walletTypeScore: number;
+  totalTx: number;
+}): number {
+  const p1 = (args.topCountries[0]?.percent ?? 0) / 100;
+  const p2 = (args.topCountries[1]?.percent ?? 0) / 100;
+  const margin = clamp01(p1 - p2);
+  const vol = reliabilityFromVolume(args.totalTx, 200);
+  const rel =
+    (args.reliabilities.timezone +
+      args.reliabilities.counterparty +
+      args.reliabilities.token +
+      args.reliabilities.protocol) /
+    4;
+
+  const raw = 0.4 * margin + 0.25 * vol + 0.25 * rel + 0.1 * clamp01(args.walletTypeScore);
+  return clamp01(raw);
+}
+
 function computeCandidates(
   targetLower: string,
   txEndpoints: Array<{ from?: string | null; to?: string | null }>,
@@ -396,6 +565,62 @@ export async function POST(req: Request) {
     5
   );
 
+  const uniqueCounterparties = new Set(
+    txEndpoints
+      .flatMap((t) => [t.from, t.to])
+      .filter((x): x is string => typeof x === "string")
+      .map((x) => x.toLowerCase())
+      .filter((x) => x !== targetLower)
+  ).size;
+  const timezoneEntropy = normalizedEntropy24(utcHourHistogram);
+  const sleepHours = maxConsecutiveSleepHours(utcHourHistogram);
+  const timezoneReliability = clamp01(
+    (1 - timezoneEntropy) * 0.7 + clamp01(sleepHours / 8) * 0.3
+  );
+  const counterpartyReliability = clamp01(
+    reliabilityFromVolume(totalMatchedEntities, 40) * 0.8 +
+      clamp01(candidates.length / 5) * 0.2
+  );
+  const tokenReliability = clamp01(
+    reliabilityFromVolume(perChainTxFetched["ethereum:tokentx"] ?? 0, 80)
+  );
+  const protocolReliability = clamp01(reliabilityFromVolume(uniqueCounterparties, 100) * 0.4);
+
+  const wallet = classifyWalletType({
+    totalTx: totalTxFetched,
+    uniqueCounterparties,
+    timezoneEntropy,
+    sleepHours,
+    totalMatchedEntities,
+    isContractLike: false,
+  });
+  const baseWeights = baseWeightsByWalletType(wallet.walletType);
+  const weightedSignals = normalizeWeights({
+    timezone: baseWeights.timezone * timezoneReliability,
+    counterparty: baseWeights.counterparty * counterpartyReliability,
+    token: baseWeights.token * tokenReliability,
+    protocol: baseWeights.protocol * protocolReliability,
+  });
+
+  const fused = fuseCountriesProbabilistically({
+    timezoneCountries: blendedCountrySignal.countryCandidates,
+    counterpartyCountries: candidates,
+    signalWeights: weightedSignals,
+    topK: 5,
+  });
+
+  const confidence = calibratedConfidence({
+    topCountries: fused.topCountries,
+    reliabilities: {
+      timezone: timezoneReliability,
+      counterparty: counterpartyReliability,
+      token: tokenReliability,
+      protocol: protocolReliability,
+    },
+    walletTypeScore: wallet.score,
+    totalTx: totalTxFetched,
+  });
+
   const response: LookupResponse = {
     address: targetChecksum,
     network: "ethereum",
@@ -415,10 +640,27 @@ export async function POST(req: Request) {
     timezoneCandidates: timezoneCandidatesWithFallback.length
       ? timezoneCandidatesWithFallback
       : undefined,
-    countryCandidates: blendedCountrySignal.countryCandidates.length
-      ? blendedCountrySignal.countryCandidates
-      : undefined,
-    bestCountry: blendedCountrySignal.bestCountry,
+    countryCandidates: fused.topCountries.length ? fused.topCountries : undefined,
+    topCountries: fused.topCountries.length ? fused.topCountries : undefined,
+    bestCountry: fused.bestCountry ?? blendedCountrySignal.bestCountry,
+    confidence,
+    walletType: wallet.walletType,
+    signalBreakdown: {
+      timezone: weightedSignals.timezone,
+      counterparty: weightedSignals.counterparty,
+      token: weightedSignals.token,
+      protocol: weightedSignals.protocol,
+    },
+    diagnostics: {
+      totalTx: totalTxFetched,
+      timezoneEntropy,
+      timezoneReliability,
+      tokenReliability,
+      protocolReliability,
+      counterpartyReliability,
+      uniqueCounterparties,
+      fallbackUsed: !timezoneCandidates.length,
+    },
     perChainTxFetched,
     utcHourHistogram,
     build: {

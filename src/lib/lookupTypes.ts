@@ -28,7 +28,26 @@ export type LookupResponse = {
   unlabeledCounterparties?: string[]; // counterparties found in tx endpoints but missing from entities.json
   timezoneCandidates?: TimezoneCandidate[];
   countryCandidates?: CountryGuessCandidate[];
+  topCountries?: CountryGuessCandidate[];
   bestCountry?: CountryGuessCandidate | null;
+  confidence?: number; // 0..1 calibrated
+  walletType?: "human" | "bot" | "exchange" | "contract";
+  signalBreakdown?: {
+    timezone: number; // 0..1 contribution weight after reliability
+    counterparty: number; // 0..1
+    token: number; // 0..1
+    protocol: number; // 0..1
+  };
+  diagnostics?: {
+    totalTx: number;
+    timezoneEntropy: number; // 0..1 normalized
+    timezoneReliability: number; // 0..1
+    tokenReliability: number; // 0..1
+    protocolReliability: number; // 0..1
+    counterpartyReliability: number; // 0..1
+    uniqueCounterparties: number;
+    fallbackUsed: boolean;
+  };
   perChainTxFetched?: Record<string, number>;
   utcHourHistogram?: number[]; // length 24, aggregated across chains
   build?: {

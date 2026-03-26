@@ -68,12 +68,13 @@ export default function LookupClient() {
             onChange={(e) => setAddress(e.target.value)}
             spellCheck={false}
             inputMode="text"
-            placeholder="0xfb9b259def14317DDF9deE0b02f61c22d3891C95"
+            placeholder="0xhsfsl*****ufs345"
             className="h-11 rounded-xl bg-zinc-50 dark:bg-black/30 ring-1 ring-zinc-200/70 dark:ring-white/10 px-4 text-sm text-zinc-900 dark:text-zinc-50 placeholder:text-zinc-400 outline-none focus:ring-indigo-500/40"
           />
           <div className="text-xs text-zinc-600 dark:text-zinc-400">
-            Công cụ sẽ ước lượng timezone (proxy) từ lịch sử giao dịch đa-chain,
-            sau đó suy ra “quốc gia khả dĩ” theo mapping UTC offset.
+            Mô hình heuristic: lấy giao dịch Ethereum (normal/internal/token),
+            phân loại wallet type, trộn tín hiệu timezone + counterparty để suy
+            ra quốc gia khả dĩ (không phải định danh chắc chắn).
           </div>
         </div>
 
@@ -152,8 +153,8 @@ export default function LookupClient() {
                         {result.bestCountry.country}
                       </div>
                       <div className="text-sm text-zinc-600 dark:text-zinc-400">
-                        Độ tin cậy (proxy): {result.bestCountry.percent.toFixed(0)}% ·
-                        dựa trên {result.bestCountry.timezoneLabel}
+                        Proxy score: {result.bestCountry.percent.toFixed(0)}% · dựa
+                        trên {result.bestCountry.timezoneLabel}
                       </div>
                     </div>
                     <div className="text-right">
@@ -161,7 +162,7 @@ export default function LookupClient() {
                         Confidence
                       </div>
                       <div className="text-sm font-semibold text-indigo-700 dark:text-indigo-300">
-                        {result.bestCountry.percent.toFixed(0)} / 100
+                        {((result.confidence ?? 0) * 100).toFixed(0)} / 100
                       </div>
                     </div>
                   </div>
@@ -209,6 +210,37 @@ export default function LookupClient() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          ) : null}
+
+          {(result.walletType || result.signalBreakdown || result.diagnostics) ? (
+            <div className="rounded-2xl bg-white dark:bg-black/20 ring-1 ring-zinc-200/70 dark:ring-white/10 p-4">
+              <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                Giải thích dự đoán
+              </div>
+              <div className="mt-3 grid gap-2 text-xs text-zinc-700 dark:text-zinc-300">
+                {result.walletType ? (
+                  <div>
+                    Wallet type: <span className="font-semibold uppercase">{result.walletType}</span>
+                  </div>
+                ) : null}
+                {result.signalBreakdown ? (
+                  <div>
+                    Weights - timezone {(result.signalBreakdown.timezone * 100).toFixed(0)}%,
+                    counterparty {(result.signalBreakdown.counterparty * 100).toFixed(0)}%,
+                    token {(result.signalBreakdown.token * 100).toFixed(0)}%,
+                    protocol {(result.signalBreakdown.protocol * 100).toFixed(0)}%
+                  </div>
+                ) : null}
+                {result.diagnostics ? (
+                  <div>
+                    Entropy {result.diagnostics.timezoneEntropy.toFixed(2)} · tzReliability{" "}
+                    {result.diagnostics.timezoneReliability.toFixed(2)} · counterparties{" "}
+                    {result.diagnostics.uniqueCounterparties} · fallback{" "}
+                    {result.diagnostics.fallbackUsed ? "yes" : "no"}
+                  </div>
+                ) : null}
               </div>
             </div>
           ) : null}
