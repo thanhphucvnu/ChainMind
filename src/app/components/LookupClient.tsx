@@ -171,6 +171,12 @@ export default function LookupClient() {
                       style={{ width: `${result.bestCountry.percent}%` }}
                     />
                   </div>
+
+                  {result.message ? (
+                    <div className="mt-2 text-xs text-zinc-600 dark:text-zinc-400">
+                      {result.message}
+                    </div>
+                  ) : null}
                 </>
               ) : (
                 <div className="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
@@ -209,7 +215,7 @@ export default function LookupClient() {
         </div>
       ) : null}
 
-      {/* Message already shown above when bestCandidate is missing. */}
+      {/* Message shown inline when bestCountry is available / missing. */}
     </div>
   );
 }

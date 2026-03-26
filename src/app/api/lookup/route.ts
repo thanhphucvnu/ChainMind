@@ -213,10 +213,24 @@ export async function POST(req: Request) {
     topK: 5,
     activeStartHourLocal: 8,
     activeEndHourLocal: 23,
+    fallbackPrior: false,
   });
 
+  const totalTxFetched = Object.values(perChainTxFetched).reduce((a, b) => a + b, 0);
+  const timezoneCandidatesWithFallback =
+    timezoneCandidates.length
+      ? timezoneCandidates
+      : totalTxFetched === 0
+        ? []
+        : hourHistogramToTimezoneCandidates(utcHourHistogram, {
+            topK: 5,
+            activeStartHourLocal: 8,
+            activeEndHourLocal: 23,
+            fallbackPrior: true,
+          });
+
   const { countryCandidates, bestCountry } =
-    timezoneCandidatesToCountryCandidates(timezoneCandidates, 5);
+    timezoneCandidatesToCountryCandidates(timezoneCandidatesWithFallback, 5);
 
   const unlabeledCounterpartiesSet = new Set<string>();
   if (txEndpoints.length) {
@@ -244,8 +258,6 @@ export async function POST(req: Request) {
     entitiesMap
   );
 
-  const totalTxFetched = Object.values(perChainTxFetched).reduce((a, b) => a + b, 0);
-
   const response: LookupResponse = {
     address: targetChecksum,
     network: "multichain-evm",
@@ -254,13 +266,17 @@ export async function POST(req: Request) {
     candidates,
     bestCandidate,
     message:
-      timezoneCandidates.length
-        ? "Đã ước lượng timezone (proxy) và suy ra quốc gia khả dĩ theo mapping UTC offset."
-        : "Không đủ giao dịch (hoặc thiếu API key explorer) để ước lượng timezone.",
+      timezoneCandidatesWithFallback.length
+        ? timezoneCandidates.length
+          ? "Đã ước lượng timezone (proxy) và suy ra quốc gia khả dĩ theo mapping UTC offset."
+          : "Không suy ra timezone từ histogram (thiếu timestamp). Dùng fallback prior theo UTC offset để trả quốc gia gần đúng."
+        : "Không đủ dữ liệu để ước lượng quốc gia.",
     unlabeledCounterparties: unlabeledCounterpartiesSet.size
       ? Array.from(unlabeledCounterpartiesSet)
       : undefined,
-    timezoneCandidates: timezoneCandidates.length ? timezoneCandidates : undefined,
+    timezoneCandidates: timezoneCandidatesWithFallback.length
+      ? timezoneCandidatesWithFallback
+      : undefined,
     countryCandidates: countryCandidates.length ? countryCandidates : undefined,
     bestCountry,
     perChainTxFetched,

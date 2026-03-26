@@ -15,6 +15,9 @@ export function hourHistogramToTimezoneCandidates(
     activeStartHourLocal?: number;
     activeEndHourLocal?: number;
     topK?: number;
+    // If histogram is all zeros (e.g. missing timestamps) but we still want an answer,
+    // use a prior distribution over UTC offsets instead of returning [].
+    fallbackPrior?: boolean;
   }
 ): TimezoneCandidate[] {
   const hist = Array.isArray(utcHourHistogram) ? utcHourHistogram.slice(0, 24) : [];
@@ -29,7 +32,30 @@ export function hourHistogramToTimezoneCandidates(
   const candidates: Array<{ offsetHours: number; score: number }> = [];
 
   const total = hist.reduce((a, b) => a + (Number.isFinite(b) ? b : 0), 0);
-  if (!total) return [];
+  if (!total) {
+    if (!opts?.fallbackPrior) return [];
+
+    // Prior: activity likelihood decreases as offset moves away from UTC.
+    const priorOffsetScores: Array<{ offsetHours: number; score: number }> = [];
+    for (let offset = minOffset; offset <= maxOffset; offset += 1) {
+      const score = Math.exp(-Math.abs(offset) / 6);
+      priorOffsetScores.push({ offsetHours: offset, score });
+    }
+
+    priorOffsetScores.sort((a, b) => b.score - a.score);
+    const top = priorOffsetScores.slice(0, topK);
+    const sum = top.reduce((acc, c) => acc + c.score, 0) || 1;
+    return top.map((c) => {
+      const offset = c.offsetHours;
+      const sign = offset >= 0 ? "+" : "";
+      return {
+        offsetHours: offset,
+        label: `UTC${sign}${offset}`,
+        score: c.score,
+        percent: (c.score / sum) * 100,
+      };
+    });
+  }
 
   for (let offset = minOffset; offset <= maxOffset; offset += 1) {
     // Score: fraction of activity that falls into [activeStart..activeEnd] local time.
