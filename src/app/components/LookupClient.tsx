@@ -72,8 +72,8 @@ export default function LookupClient() {
             className="h-11 rounded-xl bg-zinc-50 dark:bg-black/30 ring-1 ring-zinc-200/70 dark:ring-white/10 px-4 text-sm text-zinc-900 dark:text-zinc-50 placeholder:text-zinc-400 outline-none focus:ring-indigo-500/40"
           />
           <div className="text-xs text-zinc-600 dark:text-zinc-400">
-            Công cụ sẽ ước lượng timezone dựa trên “giờ hoạt động” (UTC histogram)
-            từ lịch sử giao dịch đa-chain (Ethereum/BSC/Polygon/Arbitrum/Base).
+            Công cụ sẽ ước lượng timezone (proxy) từ lịch sử giao dịch đa-chain,
+            sau đó suy ra “quốc gia khả dĩ” theo mapping UTC offset.
           </div>
         </div>
 
@@ -102,7 +102,7 @@ export default function LookupClient() {
               {loading ? (
                 <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/70 border-t-white" />
               ) : null}
-              {loading ? "Đang phân tích..." : "Dự đoán timezone"}
+              {loading ? "Đang phân tích..." : "Dự đoán quốc gia"}
             </span>
           </button>
         </div>
@@ -141,33 +141,34 @@ export default function LookupClient() {
             </div>
 
             <div className="mt-4">
-              {result.timezoneCandidates?.length ? (
+              {result.bestCountry ? (
                 <>
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <div className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">
-                        Timezone khả dĩ nhất
+                        Quốc gia khả dĩ nhất (heuristic)
                       </div>
                       <div className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
-                        {result.timezoneCandidates[0]!.label}
+                        {result.bestCountry.country}
                       </div>
                       <div className="text-sm text-zinc-600 dark:text-zinc-400">
-                        Score: {result.timezoneCandidates[0]!.score.toFixed(3)}
+                        Độ tin cậy (proxy): {result.bestCountry.percent.toFixed(0)}% ·
+                        dựa trên {result.bestCountry.timezoneLabel}
                       </div>
                     </div>
                     <div className="text-right">
                       <div className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">
-                        Độ tin cậy (heuristic)
+                        Confidence
                       </div>
                       <div className="text-sm font-semibold text-indigo-700 dark:text-indigo-300">
-                        {result.timezoneCandidates[0]!.percent.toFixed(0)} / 100
+                        {result.bestCountry.percent.toFixed(0)} / 100
                       </div>
                     </div>
                   </div>
                   <div className="mt-3 h-2 rounded-full bg-zinc-100 dark:bg-white/10 overflow-hidden">
                     <div
                       className="h-full bg-indigo-600"
-                      style={{ width: `${result.timezoneCandidates[0]!.percent}%` }}
+                      style={{ width: `${result.bestCountry.percent}%` }}
                     />
                   </div>
                 </>
@@ -179,60 +180,27 @@ export default function LookupClient() {
             </div>
           </div>
 
-          {result.timezoneCandidates?.length ? (
+          {result.countryCandidates?.length ? (
             <div className="rounded-2xl bg-white dark:bg-black/20 ring-1 ring-zinc-200/70 dark:ring-white/10 p-4">
               <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
-                Timezone candidates (top)
+                Các quốc gia khả dĩ (top)
               </div>
               <div className="mt-3 grid gap-3">
-                {result.timezoneCandidates.slice(0, 5).map((c) => (
+                {result.countryCandidates.slice(0, 5).map((c) => (
                   <div
-                    key={c.label}
+                    key={c.country + c.offsetHours}
                     className="rounded-xl bg-zinc-50 dark:bg-white/5 ring-1 ring-zinc-200/60 dark:ring-white/10 p-3"
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
-                          {c.label}
+                          {c.country}
                         </div>
                         <div className="text-xs text-zinc-600 dark:text-zinc-400">
-                          Score: {c.score.toFixed(3)} · {c.percent.toFixed(1)}%
+                          Confidence: {c.percent.toFixed(0)}% · {c.timezoneLabel}
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : null}
-
-          {result.unlabeledCounterparties?.length ? (
-            <div className="rounded-2xl bg-white dark:bg-black/20 ring-1 ring-zinc-200/70 dark:ring-white/10 p-4">
-              <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
-                Đối tác chưa gắn nhãn
-              </div>
-              <div className="mt-2 text-xs text-zinc-600 dark:text-zinc-400">
-                Các địa chỉ dưới đây xuất hiện trong tx (from/to) nhưng không có trong `entities.json`.
-                Bạn có thể thêm chúng kèm `country` vào `src/data/entities.json`, rồi deploy lại.
-              </div>
-              <div className="mt-3 grid gap-2">
-                {result.unlabeledCounterparties.slice(0, 10).map((addr) => (
-                  <div
-                    key={addr}
-                    className="flex items-center justify-between gap-3 rounded-xl bg-zinc-50 dark:bg-white/5 ring-1 ring-zinc-200/60 dark:ring-white/10 p-2"
-                  >
-                    <div className="text-xs text-zinc-800 dark:text-zinc-200 font-mono">
-                      {addr}
-                    </div>
-                    <button
-                      type="button"
-                      onClick={async () => {
-                        await navigator.clipboard.writeText(addr);
-                      }}
-                      className="text-xs font-semibold text-indigo-700 dark:text-indigo-300 hover:underline"
-                    >
-                      Copy
-                    </button>
                   </div>
                 ))}
               </div>

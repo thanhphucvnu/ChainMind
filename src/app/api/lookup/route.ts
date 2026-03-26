@@ -4,6 +4,7 @@ import { z } from "zod";
 import { getEntitiesMap } from "@/lib/entities";
 import type { CountryCandidate, LookupResponse } from "@/lib/lookupTypes";
 import { hourHistogramToTimezoneCandidates } from "@/lib/timezone";
+import { timezoneCandidatesToCountryCandidates } from "@/lib/countryFromTimezone";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -214,6 +215,9 @@ export async function POST(req: Request) {
     activeEndHourLocal: 23,
   });
 
+  const { countryCandidates, bestCountry } =
+    timezoneCandidatesToCountryCandidates(timezoneCandidates, 5);
+
   const unlabeledCounterpartiesSet = new Set<string>();
   if (txEndpoints.length) {
     // If entities.json is empty (or missing labels for these counterparties),
@@ -251,12 +255,14 @@ export async function POST(req: Request) {
     bestCandidate,
     message:
       timezoneCandidates.length
-        ? "Đã ước lượng timezone từ histogram giờ hoạt động (UTC) trên nhiều chain."
+        ? "Đã ước lượng timezone (proxy) và suy ra quốc gia khả dĩ theo mapping UTC offset."
         : "Không đủ giao dịch (hoặc thiếu API key explorer) để ước lượng timezone.",
     unlabeledCounterparties: unlabeledCounterpartiesSet.size
       ? Array.from(unlabeledCounterpartiesSet)
       : undefined,
     timezoneCandidates: timezoneCandidates.length ? timezoneCandidates : undefined,
+    countryCandidates: countryCandidates.length ? countryCandidates : undefined,
+    bestCountry,
     perChainTxFetched,
     utcHourHistogram,
     build: {
