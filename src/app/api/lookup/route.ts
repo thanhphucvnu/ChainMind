@@ -33,6 +33,7 @@ const cache = new Map<
 >();
 
 type TxEndpoint = { from?: string | null; to?: string | null; timeStamp?: number | null };
+type EtherscanAction = "txlist" | "txlistinternal" | "tokentx";
 
 function computeCandidates(
   targetLower: string,
@@ -97,10 +98,11 @@ async function fetchEtherscanFamilyTxList(args: {
   apiKey: string;
   address: string;
   offset: number;
+  action?: EtherscanAction;
 }): Promise<TxEndpoint[]> {
   const url = new URL(args.apiBase);
   url.searchParams.set("module", "account");
-  url.searchParams.set("action", "txlist");
+  url.searchParams.set("action", args.action ?? "txlist");
   url.searchParams.set("address", args.address);
   url.searchParams.set("startblock", "0");
   url.searchParams.set("endblock", "99999999");
@@ -186,11 +188,31 @@ export async function POST(req: Request) {
     offset,
   });
 
+  const internalTxs = await fetchEtherscanFamilyTxList({
+    apiBase: ETHERSCAN.apiBase,
+    apiKey,
+    address: targetChecksum,
+    offset,
+    action: "txlistinternal",
+  });
+
+  const tokenTxs = await fetchEtherscanFamilyTxList({
+    apiBase: ETHERSCAN.apiBase,
+    apiKey,
+    address: targetChecksum,
+    offset,
+    action: "tokentx",
+  });
+
   const perChainTxFetched: Record<string, number> = {
-    [ETHERSCAN.name]: txs.length,
+    [`${ETHERSCAN.name}:txlist`]: txs.length,
+    [`${ETHERSCAN.name}:txlistinternal`]: internalTxs.length,
+    [`${ETHERSCAN.name}:tokentx`]: tokenTxs.length,
   };
 
-  const allTx: TxEndpoint[] = txs;
+  // Combine all available event types so a wallet with only token/internal activity
+  // still gets a prediction instead of "not enough tx".
+  const allTx: TxEndpoint[] = [...txs, ...internalTxs, ...tokenTxs];
 
   const txEndpoints = allTx.map((t) => ({ from: t.from ?? null, to: t.to ?? null }));
 
@@ -263,7 +285,7 @@ export async function POST(req: Request) {
         ? timezoneCandidates.length
           ? "Đã ước lượng timezone (proxy) từ lịch sử tx trên Ethereum và suy ra quốc gia theo mapping UTC offset."
           : "Không suy ra timezone từ histogram (thiếu timestamp). Dùng fallback prior theo UTC offset để trả quốc gia gần đúng."
-        : "Không đủ giao dịch để ước lượng quốc gia từ Ethereum.",
+        : "Không đủ dữ liệu từ Etherscan (txlist + internal + token tx) để ước lượng quốc gia.",
     unlabeledCounterparties: unlabeledCounterpartiesSet.size
       ? Array.from(unlabeledCounterpartiesSet)
       : undefined,
