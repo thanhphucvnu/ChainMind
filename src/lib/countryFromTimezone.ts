@@ -5,7 +5,26 @@ type OffsetCountryWeight = { country: string; weight: number };
 // Rough mapping from UTC offset -> plausible countries.
 // This is heuristic and NOT a reliable inference of a wallet owner's country.
 const COUNTRIES_BY_OFFSET: Record<number, OffsetCountryWeight[]> = {
-  // -10..+14 common offsets (subset for practicality)
+  [-12]: [
+    { country: "New Zealand", weight: 0.45 },
+    { country: "Fiji", weight: 0.30 },
+    { country: "Marshall Islands", weight: 0.15 },
+  ],
+  [-11]: [
+    { country: "Samoa", weight: 0.40 },
+    { country: "American Samoa", weight: 0.35 },
+    { country: "Niue", weight: 0.15 },
+  ],
+  [-10]: [
+    { country: "United States", weight: 0.45 },
+    { country: "French Polynesia", weight: 0.30 },
+    { country: "Cook Islands", weight: 0.15 },
+  ],
+  [-9]: [
+    { country: "United States", weight: 0.50 },
+    { country: "Canada", weight: 0.25 },
+    { country: "French Polynesia", weight: 0.15 },
+  ],
   [-8]: [
     { country: "United States", weight: 0.55 },
     { country: "Mexico", weight: 0.25 },
@@ -126,7 +145,20 @@ const COUNTRIES_BY_OFFSET: Record<number, OffsetCountryWeight[]> = {
 };
 
 function getOffsetCountries(offsetHours: number): OffsetCountryWeight[] {
-  return COUNTRIES_BY_OFFSET[offsetHours] ?? [{ country: "Unknown", weight: 1 }];
+  if (COUNTRIES_BY_OFFSET[offsetHours]) return COUNTRIES_BY_OFFSET[offsetHours];
+
+  // No hard "Unknown": fallback to the nearest known offset bucket.
+  const knownOffsets = Object.keys(COUNTRIES_BY_OFFSET).map(Number);
+  let nearest = knownOffsets[0] ?? 0;
+  let bestDist = Number.POSITIVE_INFINITY;
+  for (const o of knownOffsets) {
+    const d = Math.abs(o - offsetHours);
+    if (d < bestDist) {
+      bestDist = d;
+      nearest = o;
+    }
+  }
+  return COUNTRIES_BY_OFFSET[nearest] ?? [{ country: "United States", weight: 1 }];
 }
 
 export function timezoneCandidatesToCountryCandidates(

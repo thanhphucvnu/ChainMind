@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getAddress, isAddress } from "ethers";
 import { z } from "zod";
 import { getEntitiesMap } from "@/lib/entities";
-import type { CountryCandidate, LookupResponse } from "@/lib/lookupTypes";
+import type { CountryCandidate, CountryGuessCandidate, LookupResponse } from "@/lib/lookupTypes";
 import { hourHistogramToTimezoneCandidates } from "@/lib/timezone";
 import { timezoneCandidatesToCountryCandidates } from "@/lib/countryFromTimezone";
 
@@ -44,6 +44,61 @@ type EtherscanFetchResult = {
   resultType?: string;
   note?: string;
 };
+
+function blendCountrySignals(
+  timezoneCountries: CountryGuessCandidate[],
+  labelCountries: CountryCandidate[],
+  topK = 5
+): { countryCandidates: CountryGuessCandidate[]; bestCountry: CountryGuessCandidate | null } {
+  const scoreByCountry = new Map<string, number>();
+  const tzRefByCountry = new Map<string, { offsetHours: number; timezoneLabel: string }>();
+
+  // Base signal from timezone (always present with fallback).
+  for (const c of timezoneCountries) {
+    scoreByCountry.set(c.country, (scoreByCountry.get(c.country) ?? 0) + c.percent);
+    if (!tzRefByCountry.has(c.country)) {
+      tzRefByCountry.set(c.country, {
+        offsetHours: c.offsetHours,
+        timezoneLabel: c.timezoneLabel,
+      });
+    }
+  }
+
+  // Boost with on-chain labeled counterparties when available (stronger signal).
+  // Label signal contributes up to +70 score points.
+  for (const c of labelCountries) {
+    const boost = c.percent * 0.7;
+    scoreByCountry.set(c.country, (scoreByCountry.get(c.country) ?? 0) + boost);
+    if (!tzRefByCountry.has(c.country)) {
+      tzRefByCountry.set(c.country, { offsetHours: 0, timezoneLabel: "Label signal" });
+    }
+  }
+
+  const ranked = Array.from(scoreByCountry.entries())
+    .map(([country, score]) => {
+      const ref = tzRefByCountry.get(country) ?? { offsetHours: 0, timezoneLabel: "UTC+0" };
+      return {
+        country,
+        score,
+        offsetHours: ref.offsetHours,
+        timezoneLabel: ref.timezoneLabel,
+        percent: 0,
+      };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, topK);
+
+  const sum = ranked.reduce((acc, c) => acc + c.score, 0) || 1;
+  const countryCandidates = ranked.map((c) => ({
+    ...c,
+    percent: (c.score / sum) * 100,
+  }));
+
+  return {
+    countryCandidates,
+    bestCountry: countryCandidates.length ? countryCandidates[0] : null,
+  };
+}
 
 function computeCandidates(
   targetLower: string,
@@ -304,8 +359,10 @@ export async function POST(req: Request) {
           fallbackPrior: true,
         });
 
-  const { countryCandidates, bestCountry } =
-    timezoneCandidatesToCountryCandidates(timezoneCandidatesWithFallback, 5);
+  const timezoneCountrySignal = timezoneCandidatesToCountryCandidates(
+    timezoneCandidatesWithFallback,
+    5
+  );
 
   const unlabeledCounterpartiesSet = new Set<string>();
   if (txEndpoints.length) {
@@ -333,6 +390,12 @@ export async function POST(req: Request) {
     entitiesMap
   );
 
+  const blendedCountrySignal = blendCountrySignals(
+    timezoneCountrySignal.countryCandidates,
+    candidates,
+    5
+  );
+
   const response: LookupResponse = {
     address: targetChecksum,
     network: "ethereum",
@@ -352,8 +415,10 @@ export async function POST(req: Request) {
     timezoneCandidates: timezoneCandidatesWithFallback.length
       ? timezoneCandidatesWithFallback
       : undefined,
-    countryCandidates: countryCandidates.length ? countryCandidates : undefined,
-    bestCountry,
+    countryCandidates: blendedCountrySignal.countryCandidates.length
+      ? blendedCountrySignal.countryCandidates
+      : undefined,
+    bestCountry: blendedCountrySignal.bestCountry,
     perChainTxFetched,
     utcHourHistogram,
     build: {

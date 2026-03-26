@@ -67,9 +67,19 @@ export function hourHistogramToTimezoneCandidates(
       if (localHour >= activeStart && localHour <= activeEnd) inWindow += count;
     }
 
-    // Add a mild penalty for very flat distributions to avoid over-confident results.
+    // Prefer offsets where activity falls into daytime/evening local time.
+    let coreWindow = 0;
+    for (let utcHour = 0; utcHour < 24; utcHour += 1) {
+      const localHour = (utcHour + offset + 24 * 10) % 24;
+      const count = hist[utcHour] ?? 0;
+      if (localHour >= 10 && localHour <= 21) coreWindow += count;
+    }
+
     const frac = inWindow / total; // 0..1
-    const score = frac;
+    const coreFrac = coreWindow / total; // 0..1
+    // Mild prior avoids extreme offsets dominating on tiny samples (1-2 tx).
+    const offsetPrior = Math.exp(-Math.abs(offset) / 10);
+    const score = (0.75 * frac + 0.25 * coreFrac) * offsetPrior;
     candidates.push({ offsetHours: offset, score });
   }
 
