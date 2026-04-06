@@ -6,7 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "labels:merge": "node scripts/merge-entity-labels.mjs",
+    "labels:sync-csv": "tsx scripts/sync-labels-from-data-csv.ts",
+    "labels:reinfer-unknown": "tsx scripts/reinfer-unknown-entity-countries.ts",
+    "labels:import:eth": "node scripts/import-eth-labels.mjs",
+    "train:export": "tsx scripts/export-training-features.ts",
+    "train:model": "node scripts/train-exported-model.mjs",
+    "train:eval": "node scripts/eval-learned-on-features.mjs"
   },
   "dependencies": {
     "ethers": "^6.16.0",
@@ -16,6 +23,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "tsx": "^4.19.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

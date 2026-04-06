@@ -1,0 +1,4536 @@
+[
+  {
+    "address": "0x00028f59e485a665cb4263c231eb4b7e8a2021a7",
+    "name": "Upbit 11",
+    "type": "CEX",
+    "country": "South Korea",
+    "countryHints": [
+      "South Korea"
+    ]
+  },
+  {
+    "address": "0x00039b9eb6092b2bac08a47cfef8b5e84f363881",
+    "name": "SushiSwap: ETHSynth",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x00040a7ebfc9f6fbce4d23bd66b79a603ba1c323",
+    "name": "SushiSwap: TUSD-Xi",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x00088e1f7510370fab86a7bd10578b578c61c723",
+    "name": "SushiSwap: LON-SUSHI",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x000d212ecc1834539a5afbb5e4b0f182e63dcaa0",
+    "name": "SushiSwap: HCM",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0013df4ec514d5839ad4f535e4987498ebb58bf5",
+    "name": "SushiSwap: ORANGE",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0018fb451a46ae397b8569936bc5bb5ff03cfd18",
+    "name": "SushiSwap: BEL",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x001b6450083e531a5a7bf310bd2c1af4247e23d4",
+    "name": "SushiSwap: UMA",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x001eef3f9cc87d487adaf1c2d5c07a75e80302f4",
+    "name": "SushiSwap: DER",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x00244f1c29f3e841eb904624172b6be54190395d",
+    "name": "PancakeSwap v2: WETH/PRDT PRDT Token AI Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x0040a2cebc65894bc2cfb57565f9acfa33fab137",
+    "name": "SushiSwap: UWL",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x004efeca2bdf918e61669d5ca356211463378f81",
+    "name": "SushiSwap: PROS-ASTRAFER",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x007b0ce66f6a8fc3b4d7976c59db8911633cfbb7",
+    "name": "PancakeSwap v2: WETH/NMR Quant Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x0087af23607d845d9391137360d497c1c36d3634",
+    "name": "SushiSwap: CSATM",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x009ef46baad819e5047c5b213fc290cc67d0f78a",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x009f1e8d579ed8f651213b11a4973bc132bd9b77",
+    "name": "SushiSwap: USDC-TRI",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x00a1e325d7bc9172c0b858c5526342439c3d0a76",
+    "name": "SushiSwap: stXYM-stETH",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x00adda4baabb466ac07ff780e1052e3110f2c4e0",
+    "name": "SushiSwap: IQ",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x00c70e8b3c9d0e0adb85993382abaae2a11c5d96",
+    "name": "SushiSwap: LIGHT",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x00d498526bfac6b19a9f9868ca566509746a9258",
+    "name": "SushiSwap: SLP 41",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x00d53e5d77d6511ab39f69fd4c6d9b7469365190",
+    "name": "SushiSwap: VERY",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x00dc59e748d8827bd86ea4f88813acb3e7f6aae2",
+    "name": "SushiSwap: KAGAMI",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x012480c08d20a14cf3cb495e942a94dd926dcc8f",
+    "name": "Kraken 55",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x0133042ade87514c0a7b34a4e83ec7ef597ff3cc",
+    "name": "SushiSwap: wSIENNA",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x01523c9f4b9a16345dee9b62aede2236db54850f",
+    "name": "SushiSwap: WATR",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x015f46294fd72f5448eb602ef8a252574bd9cbcd",
+    "name": "Upbit 6",
+    "type": "CEX",
+    "country": "South Korea",
+    "countryHints": [
+      "South Korea"
+    ]
+  },
+  {
+    "address": "0x015fb943cb01957d5ed06483ee915eba1505ab69",
+    "name": "SushiSwap: BZRX-USDC",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x01ab5bd51a93d3765e31dea8cf9ba5d1c0c52383",
+    "name": "SushiSwap: BASKBond",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x01b07db89436ae078f949cc539697c490eeb539a",
+    "name": "SushiSwap: DGCL-ACXT",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x01be9a946b52bd67e23492d005818f3f7027f3ab",
+    "name": "SushiSwap: IYKYK 2",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x01e545a18c342f95354e16b457509476e04fd5b9",
+    "name": "SushiSwap: HADA-USDT",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x01e938fed50a00e4c529631eaad263a0a2e8922f",
+    "name": "SushiSwap: BACON",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x01f188965b4be1ff48dd1022315dcf1a534f1b89",
+    "name": "SushiSwap: VEGA-USDT",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x02085e17ec3530a702e9a15154e1d1b4a53f8352",
+    "name": "SushiSwap: UNI-xSUSHI",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x02098976e02bebd91f402ddc752f7f2473383218",
+    "name": "SushiSwap: WBTC-PHI",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0225e940deecc32a8d7c003cfb7dae22af18460c",
+    "name": "SushiSwap: COOL",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x022a500470a03659a88bd20e9e36c3d0195f76fc",
+    "name": "SushiSwap: SNL",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x02466e547bfdab679fc49e96bbfc62b9747d997c",
+    "name": "Coinbase 8",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x024cc95611d478dd367240e72c82662d9e390a6a",
+    "name": "SushiSwap: ASG-DAI",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x02505f9c3fe150be7ad626aaa3642ea529bf640c",
+    "name": "SushiSwap: BITCOINROBOTS",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0267bd35789a5ce247fff6cb1d597597e003cc43",
+    "name": "SushiSwap: PUNK-BASIC",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0269197835253efc311ffe7d0aa3fbdbc1760443",
+    "name": "SushiSwap: $TIARA",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0285d1926df3a924a479e2b1f7ad21292023add6",
+    "name": "SushiSwap: USDC-ZERO",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0289b9cd5859476ce325aca04309d36addcebdaa",
+    "name": "SushiSwap: renBTC",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x028df07a4fc63c43f291d089f240675cce44b8da",
+    "name": "SushiSwap: EWLF",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x028f165dfcd95c96f6216b3e1469102791fcc39f",
+    "name": "PancakeSwap v2: RON Numeraire/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x0294b8a179eeccb15e5abf3f4f344a1238b174d8",
+    "name": "SushiSwap: (LILPEPE)",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x02b803486bf21ffcdd1bf68cef95125d25ed2b99",
+    "name": "SushiSwap: BAGNFT",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x02bab139d4d3787b221885040673efe3d01734d9",
+    "name": "SushiSwap: SBET",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x02c6260ce42ea5cd055911ed0d4857ecd4583740",
+    "name": "SushiSwap: SPANK",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x02cb152d029f06a2ae796eae564e0ae740a8b7ca",
+    "name": "SushiSwap: LINA-MIS",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x02cd9c0837d9aa33d8b2baa737c855e416a61b3c",
+    "name": "SushiSwap: MHONEY",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x02d24cab4f2c3bf6e6eb07ea07e45f96baccffe7",
+    "name": "Coinbase: Commerce Fee 3",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x02d7587077ed3b9f254232ea92ecb55d83ef83a5",
+    "name": "SushiSwap: SeS",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x02e35963fab259453f527b195fbf5fdc3ab3eadc",
+    "name": "SushiSwap: LINU",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x02eb135eba0d5b36c2cf0bb9190c36927c5eed6d",
+    "name": "SushiSwap: ZEON",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x02f2e294b1d3cf1ae1a938d8144cc5caf424b9ab",
+    "name": "SushiSwap: SLP 26",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x02ff01edec0019d2377d827563daf2243375ce2a",
+    "name": "SushiSwap: REAL",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0313ba7d9b5e1df207aca261cf381405a0e31a52",
+    "name": "SushiSwap: SLP-SLP 9",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x031c3ada568bacc1c4831813489dff949862511a",
+    "name": "SushiSwap: ASTRAFER",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x031ea09922fb6dc929985e5cb280c2abbbd684fc",
+    "name": "SushiSwap: TACO-CRD",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x032f7305592b5a07a43f8e1bf43681560e7fa161",
+    "name": "SushiSwap: GCN",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x03310e84968036b5a649266afa7a0bee8c9a14a8",
+    "name": "SushiSwap: BLUEWAVE",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x033ecd066376afec5e6383bc9f1f15be4c62dc89",
+    "name": "SushiSwap: YAX",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x033f4a33823595a6dd9df0672fd94de32c65c415",
+    "name": "SushiSwap: stZEN-stETH",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x034207332f4091d43e4823908cacc739f8fc043e",
+    "name": "SushiSwap: PLA",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x03616c1bb1699d50a8f7a468fcc27593f5936e1b",
+    "name": "SushiSwap: ESS",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x03739652e539d2c62d79ba75d06a601e23dddaf7",
+    "name": "SushiSwap: TESTPRESALE",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x038c4e7e427cd92aef6dcd18fa1a7d736719721e",
+    "name": "PancakeSwap v2: WETH/PresaleLightchain AI Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x039b5649a59967e3e936d7471f9c3700100ee1ab",
+    "name": "KuCoin: Old KCS Token",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x039c25424680eb4200a5a65b53e9424f21f86b9d",
+    "name": "SushiSwap: SHOTCALLER",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x03a609e25ced7c3bcefa25eb513e601bdec80cb7",
+    "name": "SushiSwap: SUSHI-TOAST",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x03aad5cbdf61d110693f319531b950243428c043",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x03b9e008acb98d41125d0c68db82f4fb92dac2ba",
+    "name": "SushiSwap: SPROTO",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x03e0507956aa9381b12ad69ffa13e9af4ad65fa2",
+    "name": "SushiSwap: AZUKI",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x03e659bee1bb0f3eec24224f32765da0e9b075de",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x040805f5e3236e5f664aac928a3ec98ac62eaf51",
+    "name": "SushiSwap: GTON-USDT",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0410c98aa215c2f6d8d4422e07a43313bc725dd0",
+    "name": "SushiSwap: AVA-AXS",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0411a85cb27e29ed7bda67ec70494546d5258d6a",
+    "name": "SushiSwap: LLAMA 2",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x04322d5c07d5a77159fd6240106738581c1d7e0c",
+    "name": "SushiSwap: MSHIBA",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0434dd885c22096f3979a5e58122e143db7ec387",
+    "name": "PancakeSwap v2: WETH/COAL COAL AI Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x0436b55da270d147cd7235f022f6f0a4c43993f1",
+    "name": "SushiSwap: nrtf",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0438a9524fd89f0ec6a66b82c0c9627b7de46728",
+    "name": "SushiSwap: THUNDER",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0440f3226cc2caa65609c78fd1f3029543445b11",
+    "name": "SushiSwap: AMETHYST",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x04444d365324134e58104b1d874d00dc68dcea53",
+    "name": "SushiSwap: NU",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0446f087fb2ed2bc4d39fc6fc8b787534bc5874e",
+    "name": "SushiSwap: USDC-GTC",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x04496c9673e1bc5d14c3e433fd3b6a367e5c8046",
+    "name": "SushiSwap: KLAYME",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x04536e2c62daa818393d4d7ac0a50d5ed6f19fc4",
+    "name": "SushiSwap: CQT-USDT",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x04631328f056046ab6a5ae62df2d4fe6bead5334",
+    "name": "SushiSwap: UNI 2",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0463a06fbc8bf28b3f120cd1bfc59483f099d332",
+    "name": "SushiSwap: PUNK 2",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x046d8c308fd8b1d287fecec297dea805a6d925f0",
+    "name": "SushiSwap: MUA",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x04771d6e1c4b1a6912c74ec53e6d1e83b45e4e9b",
+    "name": "SushiSwap: EARN-EUSD",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x047921b7771d5ba31ae0c0c8d3e8884320d0c59f",
+    "name": "PancakeSwap v2: B-Lucky LUCKY/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x04940b1776b0bf5786dac58986112c4f722bfc63",
+    "name": "SushiSwap: PYLON",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x04a76d48bee726e5d8215586a33441ec902d08af",
+    "name": "SushiSwap: SDARK",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x04c56ddfb71fb62802f76b1b5c1fd2b2735122c6",
+    "name": "PancakeSwap v2: PresaleDawg/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x04d4876932c7c375efcaeb7ae0ad00591acf09f6",
+    "name": "Coinbase: Deposit Funder 9",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x05e3a758fdd29d28435019ac453297ea37b61b62",
+    "name": "Coinbase 27",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x05f136eb9e00663fe852a2ccb8223a9cf2610bac",
+    "name": "PancakeSwap v2: Frax Starknet/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x05ff6964d21e5dae3b1010d5ae0465b3c450f381",
+    "name": "Kraken: Hot Wallet 4",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x061f7937b7b2bc7596539959804f86538b6368dc",
+    "name": "KuCoin: Deposit Funder",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0639556f03714a74a5feeaf5736a4a64ff70d206",
+    "name": "Bitget 4",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x06d538690af257da524f25d0cd52fd85b1c2173e",
+    "name": "Stargate Finance : Factory",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x076bd4d181c2b92b028551de60b8e064f42af1c1",
+    "name": "PancakeSwap v2: Pigger Wigger Pig AI/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x0783a46f8c412c19aaf4e5c8b0e1f6b28418d224",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x0820d2605dcf5f1868262d40ad0f96b01e2e5a37",
+    "name": "PancakeSwap v2: PixelPuma/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x08c1a3fd66151ba0e28d354c4d1c2436fa7741da",
+    "name": "PancakeSwap v2: Internet Computer ICP AI/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x08d0f5bd1f23edb04f1a4e6399943911b09cf99e",
+    "name": "PancakeSwap v2: WETH/SHELL Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x08d6f41dca5e3a17c2ee36ab753e10ebc4509caa",
+    "name": "PancakeSwap v3: WETH/MON Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x0954acce0189bae739733865ff4cbef8e6dd7b7b",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x098cbdd8eb01b19d37539644821772e9bde12d55",
+    "name": "Kraken 20",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x09b557ba541f98be6393c8caba1cc26a3f74b9d8",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x0a74db66f8248554d406832e305555043fe3bfd7",
+    "name": "Coinbase: LINK Hot 12",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x0a869d79a7052c7f1b55a8ebabbea3420f0d1e13",
+    "name": "Kraken 2",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x0af5035a8dff53f5a89bfc083fdec94c7332ad7a",
+    "name": "Coinbase: Cold Migration 5",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x0b7aeaaf8d049ba11d27611a68fe42ce32e4383a",
+    "name": "PancakeSwap v2: Synthetix Inu/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x0bf5ec06f44e9aa068732b1c203f007855a5eed8",
+    "name": "Coinbase: Cold Migration 1",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x0bfbcf9fa4f9c56b0f40a671ad40e0805a091865",
+    "name": "PancakeSwap V3: Factory",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x0c72e7c115e1b0282cc159f523ab5643633e83a3",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x0cbb6323be4144ffb8e0952f8f3ceb226bd2f5b5",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x0d0452f487d1edc869d1488ae984590ca2900d2f",
+    "name": "Kraken 16",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x0d9aea751038709a03de3b6af85428cce4096c3c",
+    "name": "PancakeSwap v2: WETH/HIVE WINkLink Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x0e33be39b13c576ff48e14392fbf96b02f40cd34",
+    "name": "Kraken 52",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x0ef6aeb825dc4c9983d551f8afefaae9d79165c6",
+    "name": "Kraken 70",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x0f5844e17b16383635ae460aa1966fbf03ab0a12",
+    "name": "PancakeSwap v2: WETH/DogeDaimyo Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x0faf1d2d3ced330824de3b8200fc8dc6e397850d",
+    "name": "Stargate Finance: S*DAI Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x0fec4328f7d6f6485efe8f0d2582f9391fba9326",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x101816545f6bd2b1076434b54383a1e633390a2e",
+    "name": "Stargate Finance: S*SGETH Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x1041d127b2d4bc700f0f563883bc689502606918",
+    "name": "Stargate: Treasurer",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x10593a64b7b7bb0ea29b8c01f1619ca8ff294b2f",
+    "name": "Kraken 25",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x109be9d7d5f64c8c391ced3a8f69bdef20fcaea9",
+    "name": "Kraken 74",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x10d16248bed1e0d0c7cf94ffd99a50c336c7bcdc",
+    "name": "Stargate Finance: Widget Swap",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x10ed43c718714eb63d5aa57b78b54704e256024e",
+    "name": "Pancakeswap: Router",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1116898dda4015ed8ddefb84b6e8bc24528af2d8",
+    "name": "Synapse: Stable Liquidity Pool",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x135d99edba3055ca94d47899e7688e68e42a0d92",
+    "name": "PancakeSwap v2: Layer Brett LBRETT AI/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x13f4ea83d0bd40e75c8222255bc855a974568dd4",
+    "name": "PancakeSwap V3: Smart Router",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x14617d7cf9f641d92b13238d9f8daeadde5c1585",
+    "name": "PancakeSwap v2: DeepSnitch DSNT Agents/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x14c9adc6d392dcf4387084d1d56ea6313db2a0c1",
+    "name": "PancakeSwap v3: TORN/USDC Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x150f94b44927f078737562f0fcf3c95c01cc2376",
+    "name": "Stargate Finance: ETH Router 2",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x15159b543d518f03623b2c2c471107535dbe2203",
+    "name": "PancakeSwap v2: PresaleLCAI/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x152649ea73beab28c5b49b26eb48f7ead6d4c898",
+    "name": "PancakeSwap: Cake Token",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x15312e66429b0c253ee8ea121d833cf9d9212a1c",
+    "name": "PancakeSwap v2: DeepSnitch DSNT AI/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x15330f3f12424dfc001c6461d4ba623b89617e01",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1553767e6ab6d26695b34366f61340b48d8b7a62",
+    "name": "Coinbase: Deposit Funder 7",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x1565f0c48c06bc006095591a4c3fe4a6f39712cf",
+    "name": "Coinbase Prime: Deposit Funder 1",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x163de09e6000fb36ad111cb1dae814f0e0da39d7",
+    "name": "PancakeSwap v2: DIA TBCC/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1664b842fb95ecc76373e44aad1093bc71eff82a",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1692e170361cefd1eb7240ec13d048fd9af6d667",
+    "name": "KuCoin 5",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x16b2b042f15564bb8585259f535907f375bdc415",
+    "name": "Kraken 33",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x16b34756653f88a89005e96c0622832d8fb6b0b5",
+    "name": "Kraken 65",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x1830580cc93c12e16c79822071a34be00f7b919b",
+    "name": "PancakeSwap v3: TOKE/USDC Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x18776e32388f43023ecbd4dd7b65e6fb0c3189e0",
+    "name": "PancakeSwap v2: FusionFirefly/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1892563e4666b6a48e9607e54b7bcaaba9ec1e0d",
+    "name": "PancakeSwap v2: Bitcoin Hyper PRESALE/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x18ee72c7169bfbdd4fdfb8ba4d9829b831ca6df2",
+    "name": "PancakeSwap v2: GRELF JP/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1985ea6e9c68e1c272d8209f3b478ac2fdb25c87",
+    "name": "Coinbase 41",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x19ab546e77d0cd3245b2aad46bd80dc4707d6307",
+    "name": "Coinbase 17",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x19be6690ec466d87c497e1459bfa84f4ce8363cc",
+    "name": "PancakeSwap v2: WETH/DeepSnitch AI ETF Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x19d39241e02d612264b9090b74e14acdfb54b8f8",
+    "name": "Upbit 8",
+    "type": "CEX",
+    "country": "South Korea",
+    "countryHints": [
+      "South Korea"
+    ]
+  },
+  {
+    "address": "0x19d599012788b991ff542f31208bab21ea38403e",
+    "name": "Coinbase Cold 14",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x19f2b1b85eb2cfa7d1bdbe027a8c405304ac9d4d",
+    "name": "PancakeSwap v2: TAP AI Agents/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1a14be8d714821248028eb04301e0956acfbdbaf",
+    "name": "PancakeSwap v2: HIGH HSK/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1a692e95de015ed7a0d3e6434ff110a9a136f23e",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1ab4973a48dc892cd9971ece8e01dcc7688f8f23",
+    "name": "Bitget 6",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x1acbccfde5a84322a27f1c86100608041d0846e9",
+    "name": "PancakeSwap v2: DSNT ETF/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1b02fa287061ced0456746c4456e3fd5bc846c78",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1b81d678ffb9c0263b24a97847620c99d213eb14",
+    "name": "PancakeSwap V3: Swap Router",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1b84765de8b7566e4ceaf4d0fd3c5af52d3dde4f",
+    "name": "Synapse: nUSD",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x1bbe1be1fb532a010762665cfcbed31595367e5d",
+    "name": "Coinbase: ERC20 Distributor",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x1c3000b8f475a958b87c73a5cc5780ab763122fc",
+    "name": "Stargate Finance: LP Staking Time Metis",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x1c711196af1d185fdd9923170921b6c9f4c7cfd9",
+    "name": "PancakeSwap v2: WETH/GOOB Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1c987faba2b27efede38e8e4fba208e8a95116f5",
+    "name": "PancakeSwap v2: Smog Utya/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1cdd2eab61112697626f7b4bb0e23da4febf7b7c",
+    "name": "Wormhole: USDT Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x1d1bab63311db47d21c047171c6bf352c4b51a04",
+    "name": "PancakeSwap v2: ROCKY WW3/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1d79875420629107bde3ec37e928b0cfcdb96f66",
+    "name": "PancakeSwap v2: $FLY AXEL/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1e7016f7c23859d097668c27b72c170ed7129a10",
+    "name": "Coinbase Prime 3",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x1edf086a3922924bb2383309bbf2852a05d3479c",
+    "name": "PancakeSwap v2: Bitcoin Hyper AI Agents/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x1fb6dfab49d149d5e3a080241d319526e306a7bd",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x204ad5bed7eb66e002329a018bb96d87a8db1aa8",
+    "name": "Coinbase: LINK Hot 19",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x20fe51a9229eef2cf8ad9e89d91cab9312cf3b7a",
+    "name": "Coinbase 21",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x210363ad7ba300aa94e2dadd333a9c58f6254d08",
+    "name": "PancakeSwap v2: WETH/Giggle Fund GIGGLE AI Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x21929ec4bd6f86c88125319b333b5b6ea36bd223",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x221a5322b445d0dad0b262a244bac3d68ac408fb",
+    "name": "PancakeSwap v2: TAP PRESALE/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x221cec08c3df34763eed468705dc779cbe750ceb",
+    "name": "Coinbase: LINK Hot 14",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x22af984f13dfb5c80145e3f9ee1050ae5a5fb651",
+    "name": "Kraken: Cold Wallet",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x22fb8e6647e99dc193a3a4369ea63b63379fd378",
+    "name": "PancakeSwap v2: WETH/OasisOtter Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x236f9f97e0e62388479bf9e5ba4889e46b0273c3",
+    "name": "OKX 2",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x2427f4b2f99d627ec6a3d44d40273017da939431",
+    "name": "PancakeSwap v2: B-Lucky AI/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x24c654f6b143dc5cae3c02fbb527ca63aa555dbc",
+    "name": "OKX: Deposit Funder 10",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x251e93d51c5f2a1e60b7bc90bc8b2534b68e8f40",
+    "name": "Coinbase: LINK Hot 1",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x25f3aceb98fd8c60819da40e43994e441ac8af89",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x2602669a92fccf44e5319ff51b0f453aab9db021",
+    "name": "KuCoin: Deposit Funder 2",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x267be1c1d684f78cb4f6a176c4911b741e4ffdc0",
+    "name": "Kraken 4",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x268ca24daeff1fac2ed883c598200ccbb79e931d",
+    "name": "Stargate: Pool mETH",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x26a78d5b6d7a7aceedd1e6ee3229b372a624d8b7",
+    "name": "Kraken 57",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x26b80fbfc01b71495f477d5237071242e0d959d7",
+    "name": "Wormhole: wROSE Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x27428dd2d3dd32a4d7f7c497eaaa23130d894911",
+    "name": "Wormhole: Standard Relayer",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x276cdba3a39abf9cedba0f1948312c0681e6d5fd",
+    "name": "OKX 22",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x2796317b0ff8538f253012862c06787adfb8ceb6",
+    "name": "Synapse: Bridge",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x27ae5e0382543247dd7986bc7cae3d6aa4a8a646",
+    "name": "PancakeSwap v2: WETH/Tutorial StormX Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x281055afc982d96fab65b3a49cac8b878184cb16",
+    "name": "Coinbase Cold 3",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x28c5b0445d0728bc25f143f8eba5c5539fae151a",
+    "name": "Coinbase 36",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x28e71d0b7f7f29106a1be2a5b289cab331e7b56f",
+    "name": "Coinbase 44",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x2910543af39aba0cd09dbb2d50200b3e800a63d2",
+    "name": "Kraken",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x291ea73aeb8fe31ecd55ff262bbcb057823626fe",
+    "name": "PancakeSwap v2: EURC/WBTC Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x292bf41e2506f88aa3e73721aabc75b4f08e664e",
+    "name": "Coinbase: LINK Hot 4",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x296f55f8fb28e498b858d0bcda06d955b2cb3f97",
+    "name": "Stargate Finance: Bridge",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x29728d0efd284d85187362faa2d4d76c2cfc2612",
+    "name": "Kraken 9",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x2a896bc5fad36c09496e02e07eeaba16c622e75e",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x2ae5d7c705aa9b52a153eacf2c7c876d66803056",
+    "name": "PancakeSwap v2: WETH/POG OLAF Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x2b337ac7b022f9daa798e16aea0f4ac61e9fb45f",
+    "name": "PancakeSwap v2: ZEC Zcash AI/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x2b5634c42055806a59e9107ed44d43c426e58258",
+    "name": "KuCoin",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x2bdcda44d935c12c3a76972c4339975782842a12",
+    "name": "Coinbase: LINK Hot 5",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x2c3ab19b37595d6f7bfc802cf9c186fef888b7ca",
+    "name": "PancakeSwap v2: PYR Token PYR AI/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x2c59c7d02a33dffa28a9c1d7871d867700fba852",
+    "name": "PancakeSwap v2: DeepSnitch AI PRESALE/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x2c8fbb630289363ac80705a1a61273f76fd5a161",
+    "name": "OKX 4",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x2cc5146929a893d1d73bc34fb37815cc1a44ae33",
+    "name": "Coinbase: Circle Deposit 1",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x2e6ec1ecff56b7b743dfa5f281cde3d428fc74c6",
+    "name": "PancakeSwap v2: DeepSnitch DSNT NFT/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x2e7542ec36df6429d8c397f88c4cf0c925948f44",
+    "name": "Kraken: Deployer 1",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x2e9171237fb376b87bef86730b0bac21ed2cb0db",
+    "name": "PancakeSwap v2: WETH/DeepSnitch DSNT BABY Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x2f46991372dd0d40ed9929fbecaccfad3a3c7af7",
+    "name": "PancakeSwap v2: Shuffle Elixir deUSD/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x2fa9851264cb6ece69745d5bd715e78d241ad18a",
+    "name": "PancakeSwap v2: PRDT PRDT Token/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x31886da839ea18fff0f3b80e956a097ef13c0313",
+    "name": "PancakeSwap v2: Giggle Fund GIGGLE/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x319363ec2b4eb37c905af7aeb1e72f0a7c47f1a7",
+    "name": "pancakeswap labeled address",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x31fe393815822edacbd81c2262467402199efd0d",
+    "name": "Synapse: Bridge Implementation",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x32492601aad50024d12b791d28c5954d94acf73d",
+    "name": "PancakeSwap v3: EURC/WBTC Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x32e1931b8c180050a6ed597046502ba50f17ba4d",
+    "name": "Upbit 9",
+    "type": "CEX",
+    "country": "South Korea",
+    "countryHints": [
+      "South Korea"
+    ]
+  },
+  {
+    "address": "0x32fa0c2a41f466e39530ad8c94ce1155a8c19a18",
+    "name": "PancakeSwap v2: WETH/21X Brian Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x330c76e1944279f7e8bbe6294bd509a8ba820cab",
+    "name": "PancakeSwap v2: Naked Jim $JIM/WETH Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x333d17d3b42bf7930dbc6e852ca7bcf560a69003",
+    "name": "Coinbase 22",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x334072446f27a96d295487beb210dda34fee8b0d",
+    "name": "PancakeSwap v2: WETH/LIBERTXAI Pool",
+    "type": "DEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global",
+      "Vietnam",
+      "Thailand"
+    ]
+  },
+  {
+    "address": "0x33ae106bc06effa33e6db5813b619710f2dfb5d4",
+    "name": "Coinbase: Deposit Funder 2",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x34036f30371847c9fd8036b7ea5af1b3126306dc",
+    "name": "Kraken 23",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x38024b883c72f23d6d6c1f3f869034e849e8b121",
+    "name": "Coinbase: Cold Migration 6",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x382ffce2287252f930e1c8dc9328dac5bf282ba1",
+    "name": "Coinbase Fees",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x38ea452219524bb87e18de1c24d3bb59510bd783",
+    "name": "Stargate Finance: S*USDT Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x390de26d772d2e2005c6d1d24afc902bae37a4bb",
+    "name": "Upbit",
+    "type": "CEX",
+    "country": "South Korea",
+    "countryHints": [
+      "South Korea"
+    ]
+  },
+  {
+    "address": "0x3b3ae790df4f312e745d270119c6052904fb6790",
+    "name": "OKX DEX: Aggregation Router",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x3c070dceac7f99aec493de5b56619d71fa31e131",
+    "name": "Coinbase: LINK Hot 8",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x3cd751e6b0078be393132286c442345e5dc49699",
+    "name": "Coinbase 4",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x3d2e397f94e415d7773e72e44d5b5338a99e77d9",
+    "name": "Coinbase Cold 12",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x3d55ccb2a943d88d39dd2e62daf767c69fd0179f",
+    "name": "OKX 23",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x3dd1d15b3c78d6acfd75a254e857cbe5b9ff0af2",
+    "name": "Coinbase 24",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x3e368b6c95c6fefb7a16dcc0d756389f3c658a06",
+    "name": "Stargate: Fee Lib V1 ETH",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x3ee02f08b801b1990ac844d8cd2f119ba6fb9bcf",
+    "name": "Synapse: Bridge Config",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x3ee18b2214aff97000d974cf647e7c347e8fa585",
+    "name": "Wormhole: Token Bridge",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x3f1137cf8e6468669959c3b99a9250a400a76574",
+    "name": "Coinbase: LINK Hot 11",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x3ff7215004fea03c2c745e0476e3f412050e04d1",
+    "name": "Kraken 69",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x418d75f65a02b3d53b2418fb8e1fe493759c7605",
+    "name": "Wormhole: WBNB Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x41e29c02713929f800419abe5770faa8a5b4dadc",
+    "name": "KuCoin 16",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x41f7b8b9b897276b7aae926a9016935280b44e97",
+    "name": "Wormhole: USDCso Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x42436286a9c8d63aafc2eebbca193064d68068f2",
+    "name": "OKX 11",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x430ebff5e3e80a6c58e7e6ada1d90f5c28aa116d",
+    "name": "Stargate Finance: Metis - S*USDT Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x43984d578803891dfa9706bdeee6078d80cfc79e",
+    "name": "Kraken 11",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x4442c3e6b5f22b8b4dc3c9329be6c850c5779e85",
+    "name": "Kraken 59",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x45300136662dd4e58fc0df61e6290dffd992b785",
+    "name": "KuCoin 17",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x461249076b88189f8ac9418de28b365859e46bfd",
+    "name": "OKX 9",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x46ce00ec0866e7a045d2f2778558efee05c4fb08",
+    "name": "Coinbase: MATIC Hot 1",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x47d43ac7eea761c4959b2a4318e620603be7fd4f",
+    "name": "Coinbase: Deposit Funder 10",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x490b1e689ca23be864e55b46bf038e007b528208",
+    "name": "Kraken 44",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x491f5512751f5db45c5415049d423affaae70392",
+    "name": "Kraken 22",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x4a4e859565d9b563afc8e63641542455cff0dfd2",
+    "name": "Coinbase 15",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x4a8f1f5b2a3652131eac54a6f183a4a2cf44a9a6",
+    "name": "OKX: Deposit Funder 2",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x4ad64983349c49defe8d7a4686202d24b25d0ce8",
+    "name": "KuCoin 4",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x4b23d52eff7c67f5992c2ab6d3f69b13a6a33561",
+    "name": "Coinbase: Commerce Fee 6",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x4bc7c6ce8ea48a7d597714ce8ec466936612c60f",
+    "name": "Upbit 10",
+    "type": "CEX",
+    "country": "South Korea",
+    "countryHints": [
+      "South Korea"
+    ]
+  },
+  {
+    "address": "0x4d19c0a5357bc48be0017095d3c871d9afc3f21d",
+    "name": "OKX 17",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x4e8eddc514dc4ffbda51db5be0d3e8d82ee4871e",
+    "name": "Upbit 5",
+    "type": "CEX",
+    "country": "South Korea",
+    "countryHints": [
+      "South Korea"
+    ]
+  },
+  {
+    "address": "0x4f86d1d365434bfbc1e818534d353ffc1a06f8fe",
+    "name": "Coinbase: Deposit Funder 12",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x4fd166478b440fb2a0bc64321ec35ed48f9cdb16",
+    "name": "Coinbase Cold 9",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x503828976d22510aad0201ac7ec88293211d23da",
+    "name": "Coinbase 2",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x5041ed759dd4afc3a72b8192c143f72f4724081a",
+    "name": "OKX 7",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x5122e9aa635c13afd2fc31de3953e0896bac7ab4",
+    "name": "Coinbase 39",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x518b553fe47208389271745155a6abf4a961ef28",
+    "name": "Synapse: Bridge Zap 2",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x51971c86b04516062c1e708cdc048cb04fbe959f",
+    "name": "Bitget 2",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x5203aeaaee721195707b01e613b6c3259b3a5cf6",
+    "name": "Kraken 31",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x52b35406cb2fb5e0038edecfc129a152a1f74087",
+    "name": "Stargate: Fee Lib V1 USDC",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x52f5f2add61c835ff10550402a46621ebd1071d5",
+    "name": "Kraken 49",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x53ab4a93b31f480d17d3440a6329bda86869458a",
+    "name": "Kraken 53",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x53d284357ec70ce289d6d64134dfac8e511c8a3d",
+    "name": "Kraken 6",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x55c4bf24450ecb6f818f6be5881a4fc491deb01e",
+    "name": "Coinbase: MANA Hot 1",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x55e6513dbcdd1dcaf4c6710ac423c698a56eb68a",
+    "name": "Coinbase: Deposit Funder 13",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x566957ef80f9fd5526cd2bef8be67035c0b81130",
+    "name": "Wormhole: USDC Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x5871a7f88b0f3f5143bf599fd45f8c0dc237e881",
+    "name": "Stargate: Multi Rewarder",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x58edf78281334335effa23101bbe3371b6a36a51",
+    "name": "KuCoin 20",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x590d4f8a68583639f215f675f3a259ed84790580",
+    "name": "Stargate Finance: S*sUSD Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x59fae149a8f8ec74d5bc038f8b76d25b136b9573",
+    "name": "OKX 5",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x5bdf85216ec1e38d6458c870992a69e38e03f7ef",
+    "name": "Bitget 5",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x5c52cc7c96bde8594e5b77d5b76d042cb5fae5f2",
+    "name": "OKX 18",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x5c5f75b6fba2903adf66c7bddcea99b4cce44a8a",
+    "name": "Kraken 28",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x5e032243d507c743b061ef021e2ec7fcc6d3ab89",
+    "name": "Upbit 3",
+    "type": "CEX",
+    "country": "South Korea",
+    "countryHints": [
+      "South Korea"
+    ]
+  },
+  {
+    "address": "0x5ffc99b5b23c5ab8f463f6090342879c286a29be",
+    "name": "Coinbase Cold 11",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x60637c83bd6aea40d637d91cca8d724272b2d5fa",
+    "name": "Kraken 26",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x62ac55b745f9b08f1a81dcbbe630277095cf4be1",
+    "name": "Kraken 24",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x647489df0673e17db3163c47d5233ebb6f5cac70",
+    "name": "Synapse: Timelock",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x6571d6be3d8460cf5f7d6711cd9961860029d85f",
+    "name": "Synapse: Bridge Zap 3",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x65a0947ba5175359bb457d3b34491edf4cbf7997",
+    "name": "OKX 16",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x660629fe43b0825acf3402e10a999c563075a32c",
+    "name": "Coinbase: Deposit Funder 3",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x66c57bf505a85a74609d2c83e94aabb26d691e1f",
+    "name": "Kraken 12",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x68841a1806ff291314946eebd0cda8b348e73d6d",
+    "name": "OKX 26",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x689c56aef474df92d44a1b70850f808488f9769c",
+    "name": "KuCoin 2",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x692953e758c3669290cb1677180c64183cee374e",
+    "name": "Stargate Finance: S*USDD Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x69a722f0b5da3af02b4a205d6f0c285f4ed8f396",
+    "name": "OKX 12",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x69f57499e75d18d69261d081412e794b33b0e91e",
+    "name": "Kraken 247",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x6aac5e7c12d3c9259cff8e10b5bbdb1064c382a5",
+    "name": "Coinbase: Cold Migration 3",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x6b76f8b1e9e59913bfe758821887311ba1805cab",
+    "name": "Coinbase 9",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x6c37a68dbb44c3f437d15dc405c67bf5778b8637",
+    "name": "Coinbase Cold 7",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x6c8dd0e9cc58c07429e065178d88444b60e60b80",
+    "name": "Coinbase: Commerce Fee",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x6cc5f688a315f3dc28a7781717a9a798a59fda7b",
+    "name": "OKX",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x6d0cf1f651f5ae585d24dcaa188d44e389e93d26",
+    "name": "Kraken 17",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x6d5521f46b2cba9443fefc09cbac3b15ae0f73eb",
+    "name": "Stargate: Fee Lib V1 mETH",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x6d6620efa72948c5f68a3c8646d58c00d3f4a980",
+    "name": "Stargate: Token Messaging",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x6dcbce46a8b494c885d0e7b6817d2b519df64467",
+    "name": "Coinbase 31",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x6dd69717b1194b81a92105b7e0f94cb40f68a3e3",
+    "name": "Stargate: Fee Lib V1 METIS",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x6f52730dba7b02beefcaf0d6998c9ae901ea04f9",
+    "name": "Coinbase Cold 1",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x6fb624b48d9299674022a23d92515e76ba880113",
+    "name": "OKX 14",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x70287c79ee41c5d1df8259cd68ba0890cd389c47",
+    "name": "Wormhole: Settlement Token Router",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x707e8eaf4c1586fea01f8fd0242daac009d4f60e",
+    "name": "Coinbase: LINK Hot 16",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x71660c4005ba85c37ccec55d0c4493e66fe775d3",
+    "name": "Coinbase 1",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x71beefcf9f31872ccec0bc9789f211609685205a",
+    "name": "Kraken 32",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x72cef07728b199e7ad11ff03f02d2d65f91ad553",
+    "name": "Coinbase Prime: Deposit Funder 2",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x731307f3b12cc56191ade83ea630a377d9a941f6",
+    "name": "Coinbase 43",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x735fd3c55a8be1aeb3544c7e29eba3ea23500a1c",
+    "name": "Kraken 18",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x738cf6903e6c4e699d1c2dd9ab8b67fcdb3121ea",
+    "name": "KuCoin 12",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x739120ade7ed878fca5bbdb806263a8258fe2360",
+    "name": "Coinbase 29",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x7491f26a0fcb459111b3a1db2fbfc4035d096933",
+    "name": "KuCoin 19",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x75231f58b43240c9718dd58b4967c5114342a86c",
+    "name": "OKX: OKB Token",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x75590f473d2a7b377c1ba991790900f28532f329",
+    "name": "Coinbase: AAVE Hot 2",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x756bfb452cfe36a5bc82e4f5f4261a89a18c242b",
+    "name": "Wormhole: mSOL Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x76a1b88be943bc5dc6c9b641a0835970a2cc2dc4",
+    "name": "Coinbase: Deposit Funder 5",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x77696bb39917c91a0c3908d577d5e322095425ca",
+    "name": "Coinbase 11",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x77b2043768d28e9c9ab44e1abfc95944bce57931",
+    "name": "Stargate: Pool Native",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x7915f087685fffd71608e5d118f3b70c27d9ef4e",
+    "name": "Coinbase: Coinbase Commerce",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x79990a901281bee059bb3f4d7db477f7495e2049",
+    "name": "Kraken 35",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x7b4b0b9b024109d182dcf3831222fbda81369423",
+    "name": "Wormhole: BUSD Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x7c195d981abfdc3ddecd2ca0fed0958430488e34",
+    "name": "Coinbase 12",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x7c8161545717a334f3196e765d9713f8042ef338",
+    "name": "Wormhole: Cake Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x7c9f4c87d911613fe9ca58b579f737911aad2d43",
+    "name": "Wormhole: WMATIC Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x7cd167b101d2808cfd2c45d17b2e7ea9f46b74b6",
+    "name": "Wormhole: USDCbs Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x7dafba1d69f6c01ae7567ffd7b046ca03b706f83",
+    "name": "Kraken 245",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x7eb6c83ab7d8d9b8618c0ed973cbef71d1921ef2",
+    "name": "OKX 20",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x7ed53f6e3de6b2b4156fa8e618506e60d8e65843",
+    "name": "Coinbase 38",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x808e5374106e820ae54662fcf8a5e3cca6afa13d",
+    "name": "Kraken 54",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x80cf6275294bddce597789c855691cf4cdf01386",
+    "name": "Coinbase: LINK Hot 2",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x829e3c7781a6ac8cd864cd8437a664ec07da75a8",
+    "name": "Coinbase: Cold Migration 2",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x83c41363cbee0081dab75cb841fa24f3db46627e",
+    "name": "KuCoin 18",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x8535d5ed435e405a881545ffb2f8d6b81f6c9d41",
+    "name": "Coinbase: Deposit Funder 11",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x85f138bfee4ef8e540890cfb48f620571d67eda3",
+    "name": "Wormhole: WAVAX Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x8731d54e9d02c286767d56ac03e8037c07e01e98",
+    "name": "Stargate Finance: Router",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x881d4032abe4188e2237efcd27ab435e81fc6bb1",
+    "name": "Coinbase: Commerce",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x88bd4d3e2997371bceefe8d9386c6b5b4de60346",
+    "name": "KuCoin 14",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x8913f85a2ae4ba3bf76d2a2a0418f391f2cc1519",
+    "name": "Upbit 7",
+    "type": "CEX",
+    "country": "South Korea",
+    "countryHints": [
+      "South Korea"
+    ]
+  },
+  {
+    "address": "0x898f293e97d59b375939ec3654ac548be2759d41",
+    "name": "Coinbase: LINK Hot 13",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x899b5d52671830f567bf43a14684eb14e1f945fe",
+    "name": "KuCoin 8",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x89e51fa8ca5d66cd220baed62ed01e8951aa7c40",
+    "name": "Kraken 7",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x89fd00b8d2dcee0f40d8699970115bb861241a54",
+    "name": "OKX: Deposit Funder 3",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x8a108e4761386c94b8d2f98a5ffe13e472cfe76a",
+    "name": "Kraken 58",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x8ab54f9e6df35b26168847ea93dab9659ecf286d",
+    "name": "Kraken 34",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x8af8485e1f178be06386cd3877fde20626e0284f",
+    "name": "Coinbase 30",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x8c3085d9a554884124c998cdb7f6d7219e9c1e6f",
+    "name": "Stargate Finance: Fee Library V07",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x8d05d9924fe935bd533a844271a1b2078eae6fcf",
+    "name": "Kraken: Cold Wallet 3",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x8dfee7dbd859989bf3e80c4f64c42b7cd283671b",
+    "name": "Kraken 68",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x90e18a6920985dbacc3d76cf27a3f2131923c720",
+    "name": "Coinbase: Commerce Fee 5",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x90e63c3d53e0ea496845b7a03ec7548b70014a91",
+    "name": "Coinbase Cold 6",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x91d66b38ae24292e9e12dd962bbb3aecf4ab769a",
+    "name": "Coinbase: Deposit Funder 1",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x92927a664c88449318e14d0fd582c787ae2cd934",
+    "name": "Kraken 41",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x933597a323eb81cae705c5bc29985172fd5a3973",
+    "name": "Stargate: Pool USDT",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x93745feeb3c42f6ab0f9890cbce65b360145b4ab",
+    "name": "Coinbase Cold 5",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x94dbf04e273d87e6d9bed68c616f43bf86560c74",
+    "name": "Kraken 75",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x95a9bd206ae52c4ba8eecfc93d18eacdd41c88cc",
+    "name": "Coinbase 13",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x9620e530995d4b497f16652419dbb60f7834010a",
+    "name": "Coinbase: GRT Hot 1",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x97b9d2102a9a65a26e1ee82d59e42d1b73b68689",
+    "name": "Bitget 3",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x9810762578accf1f314320cca5b72506ae7d7630",
+    "name": "Coinbase 23",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x98ec059dc3adfbdd63429454aeb0c990fba4a128",
+    "name": "OKX 6",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x98f3c9e6e3face36baad05fe09d375ef1464288b",
+    "name": "Wormhole: Ethereum Core Bridge",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x99ddedb236f545061cb0481909428905be9c47e1",
+    "name": "Upbit 4",
+    "type": "CEX",
+    "country": "South Korea",
+    "countryHints": [
+      "South Korea"
+    ]
+  },
+  {
+    "address": "0x9a1ed80ebc9936cee2d3db944ee6bd8d407e7f9f",
+    "name": "Coinbase Cold 8",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x9cef9a0b1be0d289ac9f4a98ff317c33eaa84eb8",
+    "name": "Stargate Finance: S*MAI Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0x9dcaf485e72f812dee725ce64b6667a7a83f73dd",
+    "name": "Coinbase: LINK Hot 6",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x9ee32359b180ff684a315053e418aaf223932cb9",
+    "name": "Kraken 21",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0x9f1799fb47b1514f453bcebbc37ecfe883756e83",
+    "name": "Kraken: Cold Wallet 4",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xa054611c5b224a5f4ce93ac2a5f8d0ed17813402",
+    "name": "Kraken 60",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xa090e606e30bd747d4e6245a1517ebe430f0057e",
+    "name": "Coinbase: Miscellaneous",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xa152f8bb749c55e9943a3a0a3111d18ee2b3f94e",
+    "name": "KuCoin 22",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xa1d8d972560c2f8144af871db508f0b0b10a3fbf",
+    "name": "KuCoin 3",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xa24787320ede4cc19d800bf87b41ab9539c4da9d",
+    "name": "Kraken: Deployer 2",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xa2569370a9d4841c9a62fc51269110f2eb7e0171",
+    "name": "Synapse: Bridge Zap 1",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xa25aa6dfbf6d9bbd7a6a9eb47b9f1e57a2bd92d7",
+    "name": "Kraken 61",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xa2f443492bbb1b041fceee5194e2bc133ecc6407",
+    "name": "Kraken 67",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xa3670e11a2f3784558632a4c30ddcfc4b74301b3",
+    "name": "Upbit 13",
+    "type": "CEX",
+    "country": "South Korea",
+    "countryHints": [
+      "South Korea"
+    ]
+  },
+  {
+    "address": "0xa3682fe8fd73b90a7564585a436ec2d2aeb612ee",
+    "name": "Coinbase 28",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xa40dfee99e1c85dc97fdc594b16a460717838703",
+    "name": "Kraken: Eth2 Depositor",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xa4a6a282a7fc7f939e01d62d884355d79f5046c1",
+    "name": "Kraken 71",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xa572d137666dcbadfa47c3fc41f15e90134c618c",
+    "name": "Stargate Finance: S*mETH Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xa656f7d2a93a6f5878aa768f24eb38ec8c827fe2",
+    "name": "Coinbase 32",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xa6715eafe5d215b82cb9e90a9d6c8970a7c90033",
+    "name": "Kraken 73",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xa693b19d2931d498c5b318df961919bb4aee87a5",
+    "name": "Wormhole: UST Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xa7efae728d2936e78bda97dc267687568dd593f3",
+    "name": "OKX 3",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xa83b11093c858c86321fbc4c20fe82cdbd58e09e",
+    "name": "Kraken 14",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xa861678bee80035114b47615142e9302139a8c32",
+    "name": "Kraken 29",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xa939bffb33bed18dc0063737cb9ea41a1fdb2fe3",
+    "name": "Kraken 27",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xaad8ad7dfa05bc354e011890dd61636842c2cb96",
+    "name": "OKX: Deposit Funder 4",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xaada05bd399372f0b0463744c09113c137636f6a",
+    "name": "Wormhole: CCTP",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xadae2f3b0db76cb3eafe76a8bf99b93f099c140a",
+    "name": "Kraken 48",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xae2d4617c862309a3d75a0ffb358c7a5009c673f",
+    "name": "Kraken 10",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6",
+    "name": "Stargate Finance: STG Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xb0d502e938ed5f4df2e681fe6e419ff29631d62b",
+    "name": "Stargate Finance: LP Staking",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xb1b2eef380f21747944f46d28f683cd1fbb4d03c",
+    "name": "Stargate Finance: ETH Router 1",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xb8e6d31e7b212b2b7250ee9c26c56cebbfbe6b23",
+    "name": "KuCoin 15",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xb9f747162ab1e95d07361f9048bcdf6edda9eea7",
+    "name": "Wormhole: ATLAS Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xba826fec90cefdf6706858e5fbafcb27a290fbe0",
+    "name": "Upbit 2",
+    "type": "CEX",
+    "country": "South Korea",
+    "countryHints": [
+      "South Korea"
+    ]
+  },
+  {
+    "address": "0xbd31ea8212119f94a611fa969881cba3ea06fa3d",
+    "name": "Wormhole: LUNA Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xbda23b750dd04f792ad365b5f2a6f1d8593796f2",
+    "name": "OKX 21",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xbf94f0ac752c739f623c463b5210a7fb2cbb420b",
+    "name": "OKX 24",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xc026395860db2d07ee33e05fe50ed7bd583189c7",
+    "name": "Stargate: Pool USDC",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xc5451b523d5fffe1351337a221688a62806ad91a",
+    "name": "OKX 10",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xc5a93444cc4da6efb9e6fc6e5d3cb55a53b52396",
+    "name": "OKX: Deposit Funder",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xc6bed363b30df7f35b601a5547fe56cd31ec63da",
+    "name": "Kraken 8",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xc708a1c712ba26dc618f972ad7a187f76c8596fd",
+    "name": "OKX 13",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xc9cf0ec93d764f5c9571fd12f764bae7fc87c84e",
+    "name": "Upbit: Cold Wallet",
+    "type": "CEX",
+    "country": "South Korea",
+    "countryHints": [
+      "South Korea"
+    ]
+  },
+  {
+    "address": "0xcad621da75a66c7a8f4ff86d30a2bf981bfc8fdd",
+    "name": "KuCoin 10",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xcb1ee1888b2045f4b79eb777243e76f5fefe2bc3",
+    "name": "Upbit 12",
+    "type": "CEX",
+    "country": "South Korea",
+    "countryHints": [
+      "South Korea"
+    ]
+  },
+  {
+    "address": "0xcba38020cd7b6f51df6afaf507685add148f6ab6",
+    "name": "OKX 8",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xcc282e2004428939ee5149a9e7872f0b4d5d5ec7",
+    "name": "Kraken: Hot Wallet 3",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xcd0267c7f1a8ad1b6e33b7fb801f8d935f6b557d",
+    "name": "Kraken 62",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xcdafb1b2db43f366e48e6f614b8dccbfeefeecd3",
+    "name": "Stargate: Pool METIS",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xcdc8488e63a403bfd580222ea0f3719477bfea9c",
+    "name": "Kraken 56",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xce27fc71139d02f9a3d5cc1356add185750660ac",
+    "name": "Kraken 15",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xcf40d0d2b44f2b66e07cace1372ca42b73cf21a3",
+    "name": "Kraken 76",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xd0ad6ed2b2920a5744a064af3d585ee54f528b2f",
+    "name": "Kraken 63",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xd10ef2a513cee0db54e959ef16cac711470b62cf",
+    "name": "Synapse: MiniChef",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xd2dd7b597fd2435b6db61ddf48544fd931e6869f",
+    "name": "Kraken 246",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xd31a59c85ae9d8edefec411d448f90841571b89c",
+    "name": "Wormhole: SOL Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xd4039ecc40aeda0582036437cf3ec02845da4c13",
+    "name": "Kraken: ETH Staking",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xd6216fc19db775df9774a6e33526131da7d19a2c",
+    "name": "KuCoin 6",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xd7efcbb86efdd9e8de014dafa5944aae36e817e4",
+    "name": "OKX 27",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xd8772edbf88bba2667ed011542343b0eddacda47",
+    "name": "Stargate Finance: S*Metis Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xd89350284c7732163765b23338f2ff27449e0bf5",
+    "name": "KuCoin 13",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xd91efec7e42f80156d1d9f660a69847188950747",
+    "name": "KuCoin: ERC-20 Batch Transfer",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xda9dfa130df4de4673b89022ee50ff26f6ea73cf",
+    "name": "Kraken 13",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xde60adfddaabaaac3dafa57b26acc91cb63728c4",
+    "name": "Wormhole: USDTbs Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xdf0770df86a8034b3efef0a1bb3c889b8332ff56",
+    "name": "Stargate Finance: S*USDC Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xdf3e63507100dfded269ee113d6c8fb9dc086546",
+    "name": "Synapse Network: Vesting",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xe1498a9ef5c6aa51790a642f70c31238326b1724",
+    "name": "Kraken: MANA Token Wallet",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xe171afcd1e0394b3312e68ca823d5bc87f3db311",
+    "name": "Stargate: Fee Lib V1 USDT",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xe2e2d9e31d7e1cc1178fe0d1c5950f6c809816a3",
+    "name": "Wormhole: Deployer",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xe3adaa4fb7c92ab833ee08b3561d9c434aa2a3ee",
+    "name": "Wormhole: SRM",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xe52ecf8d97e290dad5963296c5d1f81472f2ec48",
+    "name": "Kraken 30",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xe59cd29be3be4461d79c0881d238cbe87d64595a",
+    "name": "Kucoin 7",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xe617dd80c621a5072bd8cba65e9d76c07327004d",
+    "name": "Wormhole: RAY Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xe7178ad747f2c12ab1f8332e61cf6e756815d5c6",
+    "name": "Kraken 47",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xe850b7c87f66371035e184c72d4b99e7b2ca4865",
+    "name": "Kraken 51",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xe853c56864a2ebe4576a807d26fdc4a0ada51919",
+    "name": "Kraken 3",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xe8f55368c82d38bbbbdb5533e7f56afc2e978cc2",
+    "name": "Stargate Finance: S*LUSD Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xe9172daf64b05b26eb18f07ac8d6d723acb48f99",
+    "name": "OKX 19",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xe9f7ecae3a53d2a67105292894676b00d1fab785",
+    "name": "Kraken: Hot Wallet",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xec30d02f10353f8efc9601371f56e808751f396f",
+    "name": "KuCoin 11",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xecc19e177d24551aa7ed6bc6fe566eca726cc8a9",
+    "name": "Stargate Finance: Composer",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xf16e9b0d03470827a95cdfd0cb8a8a3b46969b91",
+    "name": "KuCoin 9",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xf1f7648f81f5219c36d75d24d33811f16b426dbe",
+    "name": "Kraken 50",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xf2b16510270a214130c6b17ff0e9bf87585126bd",
+    "name": "KuCoin: Deployer",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xf30ba13e4b04ce5dc4d254ae5fa95477800f0eb0",
+    "name": "Kraken: Hot Wallet 2",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xf34960d9d60be18cc1d5afc1a6f012a723a28811",
+    "name": "KuCoin: KCS Token",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xf59869753f41db720127ceb8dbb8afaf89030de4",
+    "name": "OKX 15",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xf7858da8a6617f7c6d0ff2bcafdb6d2eedf64840",
+    "name": "OKX 25",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xf97deb1c0bb4536ff16617d29e5f4b340fe231df",
+    "name": "KuCoin 21",
+    "type": "CEX",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xfa0f307783ac21c39e939acff795e27b650f6e68",
+    "name": "Stargate Finance: S*FRAX Token",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  },
+  {
+    "address": "0xfa52274dd61e1643d2205169732f29114bc240b3",
+    "name": "Kraken 5",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xfcaf9c57c26566f96d23f585950bb1c66e138890",
+    "name": "Kraken 66",
+    "type": "CEX",
+    "country": "United States",
+    "countryHints": [
+      "United States",
+      "global"
+    ]
+  },
+  {
+    "address": "0xff551feddbedc0aee764139ccd9cb644bb04a6bd",
+    "name": "Stargate: Staking",
+    "type": "BRIDGE",
+    "country": "Unknown",
+    "countryHints": [
+      "global"
+    ]
+  }
+]

@@ -1,0 +1,24 @@
+[
+  { "country": "United States", "weight": 0.25 },
+  { "country": "Vietnam", "weight": 0.10 },
+  { "country": "South Korea", "weight": 0.08 },
+  { "country": "Thailand", "weight": 0.06 },
+  { "country": "Singapore", "weight": 0.05 },
+  { "country": "Japan", "weight": 0.05 },
+  { "country": "United Kingdom", "weight": 0.04 },
+  { "country": "Germany", "weight": 0.03 },
+  { "country": "France", "weight": 0.03 },
+  { "country": "Indonesia", "weight": 0.04 },
+  { "country": "Malaysia", "weight": 0.03 },
+  { "country": "Philippines", "weight": 0.03 },
+  { "country": "Turkey", "weight": 0.03 },
+  { "country": "United Arab Emirates", "weight": 0.03 },
+  { "country": "Brazil", "weight": 0.04 },
+  { "country": "Canada", "weight": 0.02 },
+  { "country": "Mexico", "weight": 0.02 },
+  { "country": "Australia", "weight": 0.02 },
+  { "country": "Pakistan", "weight": 0.02 },
+  { "country": "Bangladesh", "weight": 0.01 },
+  { "country": "Russia", "weight": 0.02 }
+]
+

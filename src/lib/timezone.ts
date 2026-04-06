@@ -77,9 +77,21 @@ export function hourHistogramToTimezoneCandidates(
 
     const frac = inWindow / total; // 0..1
     const coreFrac = coreWindow / total; // 0..1
+
+    // Penalize offsets where a large share of activity falls in local "deep night"
+    // (proxy for bots / scheduled jobs vs human waking hours).
+    let nightWindow = 0;
+    for (let utcHour = 0; utcHour < 24; utcHour += 1) {
+      const localHour = (utcHour + offset + 24 * 10) % 24;
+      const count = hist[utcHour] ?? 0;
+      if (localHour >= 0 && localHour < 7) nightWindow += count;
+    }
+    const nightFrac = nightWindow / total;
+    const nightPenalty = 1 - 0.38 * nightFrac;
+
     // Mild prior avoids extreme offsets dominating on tiny samples (1-2 tx).
     const offsetPrior = Math.exp(-Math.abs(offset) / 10);
-    const score = (0.75 * frac + 0.25 * coreFrac) * offsetPrior;
+    const score = (0.75 * frac + 0.25 * coreFrac) * offsetPrior * nightPenalty;
     candidates.push({ offsetHours: offset, score });
   }
 

@@ -1,6 +1,29 @@
 export type EntityMatch = {
   address: string; // address of the matched entity (checksum if possible)
   name?: string;
+  type?: "CEX" | "DEX" | "BRIDGE" | "MIXER" | "LENDING" | "GAMING" | "PAYMENT" | "OTHER";
+};
+
+/** Earliest tx involving the wallet within the fetched batch (not necessarily absolute chain-first). */
+export type FirstTransactionInfo = {
+  hash: string;
+  timeStamp: number | null;
+  source: "txlist" | "txlistinternal" | "tokentx";
+  direction: "in" | "out";
+  counterparty: string;
+  /** From entities / nametag (e.g. exchange display name). */
+  exchangeOrEntityName?: string;
+  entityType?: EntityMatch["type"];
+  /** Primary country for this counterparty (entity country or inferred from name). */
+  exchangePrimaryCountry?: string;
+  exchangeCountryHints?: string[];
+  /** Thứ tự 1-based trong batch (sớm → muộn, chỉ giao dịch có timestamp). */
+  chronologicalIndex?: number;
+  /** Tổng số giao dịch trong batch sau khi gộp & sắp theo thời gian. */
+  chronologicalTotalCount?: number;
+  /** Đã tìm được tên nhãn (entity / explorer) khi quét; false = chỉ hiển thị tx sớm nhất không có tên. */
+  namedCounterpartyResolved?: boolean;
+  note?: string;
 };
 
 export type CountryCandidate = {
@@ -25,6 +48,8 @@ export type LookupResponse = {
   candidates: CountryCandidate[];
   bestCandidate: CountryCandidate | null;
   message?: string;
+  /** Earliest activity in loaded tx batch + counterparty label when known. */
+  firstTransaction?: FirstTransactionInfo;
   unlabeledCounterparties?: string[]; // counterparties found in tx endpoints but missing from entities.json
   timezoneCandidates?: TimezoneCandidate[];
   countryCandidates?: CountryGuessCandidate[];
@@ -46,7 +71,43 @@ export type LookupResponse = {
     protocolReliability: number; // 0..1
     counterpartyReliability: number; // 0..1
     uniqueCounterparties: number;
-    fallbackUsed: boolean;
+    /** True when histogram did not yield timezone candidates (prior fallback). */
+    fallbackUsed?: boolean;
+    /** True when learned JSON head was applied after fuse. */
+    learnedModelApplied?: boolean;
+    /** Why learned head was skipped (e.g. invalid file, empty probs). */
+    learnedModelSkipReason?: string;
+    /** Dynamic explorer nametag → brand → country (see LOOKUP_NAMETAG_CHRONO_MAX). */
+    nametagResolution?: Array<{
+      address: string;
+      nametag?: string;
+      inferredCountry?: string;
+      skipped?: string;
+    }>;
+    /** True when final country ranking was blended toward first-tx CEX country. */
+    firstTxCountryPriorityApplied?: boolean;
+    /** Weight given to first-tx CEX country prior (see LOOKUP_FIRST_TX_COUNTRY_BLEND). */
+    firstTxCountryBlendAlpha?: number;
+  };
+  graph?: {
+    nodes: number;
+    edges: number;
+    twoHopScanned?: number;
+    twoHopUsed?: boolean;
+    twoHopSkippedReason?: string;
+    twoHopTopEntities?: Array<{
+      address: string;
+      name?: string;
+      type?: EntityMatch["type"];
+      countryHints?: string[];
+      score: number;
+    }>;
+    topCounterparties?: Array<{
+      address: string;
+      txCount: number;
+      weight: number;
+      entity?: { name?: string; type?: EntityMatch["type"]; countryHints?: string[] };
+    }>;
   };
   perChainTxFetched?: Record<string, number>;
   utcHourHistogram?: number[]; // length 24, aggregated across chains
@@ -71,6 +132,12 @@ export type LookupResponse = {
     from?: string | null;
     to?: string | null;
   }>;
+  /** Extra shape stats for ML export / learned head (UTC weekday share, etc.). */
+  trainingShape?: {
+    weekdayShare: number;
+    peakHourNorm: number;
+    earlyEntitySignalNorm: number;
+  };
 };
 
 export type CountryGuessCandidate = {

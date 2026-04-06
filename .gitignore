@@ -20,6 +20,9 @@
 # production
 /build
 
+# scratch / local dumps
+.tmp-*.html
+
 # misc
 .DS_Store
 *.pem
@@ -39,3 +42,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ML training exports (large / sensitive)
+/training/data/
+
+# Labeled wallet dataset (confidential — do not commit or push to GitHub)
+src/data/data.csv
