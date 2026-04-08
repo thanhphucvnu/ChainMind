@@ -339,14 +339,25 @@ export default function LookupClient() {
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <div className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">
-                        Quốc gia khả dĩ nhất (heuristic)
+                        {result.groundTruth
+                          ? "Quốc gia (nhãn tin cậy)"
+                          : "Quốc gia khả dĩ nhất (heuristic)"}
                       </div>
                       <div className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
                         {result.bestCountry.country}
                       </div>
                       <div className="text-sm text-zinc-600 dark:text-zinc-400">
-                        Proxy score: {result.bestCountry.percent.toFixed(0)}% · dựa
-                        trên {result.bestCountry.timezoneLabel}
+                        {result.groundTruth ? (
+                          <>
+                            Khớp dataset nội bộ (SHA256+salt index) ·{" "}
+                            {result.bestCountry.percent.toFixed(0)}% theo nguồn đã gắn nhãn
+                          </>
+                        ) : (
+                          <>
+                            Proxy score: {result.bestCountry.percent.toFixed(0)}% · dựa trên{" "}
+                            {result.bestCountry.timezoneLabel}
+                          </>
+                        )}
                       </div>
                     </div>
                     <div className="text-right">
@@ -427,10 +438,19 @@ export default function LookupClient() {
                 ) : null}
                 {result.diagnostics ? (
                   <div>
-                    Entropy {result.diagnostics.timezoneEntropy.toFixed(2)} · tzReliability{" "}
-                    {result.diagnostics.timezoneReliability.toFixed(2)} · counterparties{" "}
-                    {result.diagnostics.uniqueCounterparties} · fallback{" "}
-                    {result.diagnostics.fallbackUsed ? "yes" : "no"}
+                    {result.diagnostics.verifiedGroundTruth ? (
+                      <span>
+                        Kết quả từ nhãn đã xác minh — không phân tích histogram / graph on-chain cho bước
+                        quốc gia.
+                      </span>
+                    ) : (
+                      <>
+                        Entropy {result.diagnostics.timezoneEntropy.toFixed(2)} · tzReliability{" "}
+                        {result.diagnostics.timezoneReliability.toFixed(2)} · counterparties{" "}
+                        {result.diagnostics.uniqueCounterparties} · fallback{" "}
+                        {result.diagnostics.fallbackUsed ? "yes" : "no"}
+                      </>
+                    )}
                   </div>
                 ) : null}
               </div>

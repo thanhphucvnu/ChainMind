@@ -42,6 +42,12 @@ export type TimezoneCandidate = {
 
 export type LookupResponse = {
   address: string; // checksummed input
+  /** Khớp nguồn nhãn tin cậy (verifiedWalletLabels); không gọi Etherscan. */
+  groundTruth?: {
+    source: "verified_wallet_labels";
+    /** Khóa tra cứu trong store = SHA256(address_lower + salt). */
+    lookup: "sha256_salt_index";
+  };
   network: "ethereum" | "multichain-evm";
   totalTxFetched: number; // summed across chains
   totalMatchedEntities: number;
@@ -88,6 +94,8 @@ export type LookupResponse = {
     firstTxCountryPriorityApplied?: boolean;
     /** Weight given to first-tx CEX country prior (see LOOKUP_FIRST_TX_COUNTRY_BLEND). */
     firstTxCountryBlendAlpha?: number;
+    /** Địa chỉ khớp index nhãn đã xác minh (data.csv → verifiedWalletLabels.json). */
+    verifiedGroundTruth?: boolean;
   };
   graph?: {
     nodes: number;

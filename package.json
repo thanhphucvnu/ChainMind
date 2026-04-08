@@ -9,6 +9,8 @@
     "lint": "eslint",
     "labels:merge": "node scripts/merge-entity-labels.mjs",
     "labels:sync-csv": "tsx scripts/sync-labels-from-data-csv.ts",
+    "labels:verified:build": "tsx scripts/generate-verified-labels-from-csv.ts",
+    "labels:verified:build:test": "tsx scripts/generate-verified-labels-from-csv.ts --csv src/data/data.test.csv",
     "labels:reinfer-unknown": "tsx scripts/reinfer-unknown-entity-countries.ts",
     "labels:import:eth": "node scripts/import-eth-labels.mjs",
     "train:export": "tsx scripts/export-training-features.ts",

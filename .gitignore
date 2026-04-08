@@ -48,3 +48,7 @@ next-env.d.ts
 
 # Labeled wallet dataset (confidential — do not commit or push to GitHub)
 src/data/data.csv
+# Subset cục bộ để test generate labels (không push)
+src/data/data.test.csv
+# Hướng dẫn verified labels (chỉ local — không push)
+docs/HUONG_DAN_VERIFIED_LABELS.txt

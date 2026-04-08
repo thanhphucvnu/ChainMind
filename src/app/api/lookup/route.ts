@@ -20,6 +20,8 @@ import { hourHistogramToTimezoneCandidates } from "@/lib/timezone";
 import { timezoneCandidatesToCountryCandidates } from "@/lib/countryFromTimezone";
 import { priorToCountryCandidates } from "@/lib/countryPrior";
 import { resolveChronologicalNamedCounterparty } from "@/lib/chronologicalExchangeScan";
+import { buildGroundTruthLookupResponse } from "@/lib/buildGroundTruthLookupResponse";
+import { lookupVerifiedWalletCountry } from "@/lib/verifiedWalletCountry";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -1027,6 +1029,16 @@ export async function POST(req: Request) {
 
   const targetChecksum = getAddress(address);
   const targetLower = targetChecksum.toLowerCase();
+
+  const verifiedCountry = lookupVerifiedWalletCountry(targetChecksum);
+  if (verifiedCountry) {
+    return NextResponse.json(
+      buildGroundTruthLookupResponse({
+        addressChecksum: targetChecksum,
+        country: verifiedCountry,
+      })
+    );
+  }
 
   const entitiesMap = new Map(getEntitiesMap());
 
