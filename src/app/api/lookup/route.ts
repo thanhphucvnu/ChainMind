@@ -1043,9 +1043,11 @@ export async function POST(req: Request) {
   const entitiesMap = new Map(getEntitiesMap());
 
   const offset = Math.min(maxTx ?? 200, 2000);
+  /** Khớp script enrich: sort=asc mỗi loại để gộp chrono, tránh lỗ hổng giữa “mới nhất” và vài bản ghi asc. */
+  const firstTxAscOffset = envNum("LOOKUP_FIRST_TX_ASC_OFFSET", 100, 25, 10000);
   const extraChainIds = parseExtraEvmChainIds();
 
-  const cacheKey = `${targetLower}:${offset}:xc:${extraChainIds.join("-")}:ed:${ENTITY_DATA_FINGERPRINT}`;
+  const cacheKey = `${targetLower}:${offset}:ftAsc:${firstTxAscOffset}:xc:${extraChainIds.join("-")}:ed:${ENTITY_DATA_FINGERPRINT}`;
   const cached = cache.get(cacheKey);
   if (cached && cached.expiresAt > Date.now()) {
     return NextResponse.json(cached.value);
@@ -1092,42 +1094,46 @@ export async function POST(req: Request) {
   let internalTxs = internalTxsResult.txs;
   let tokenTxs = tokenTxsResult.txs;
 
-  /** Gộp thêm N giao dịch cũ nhất (sort=asc) để luôn có on-ramp đầu chuỗi dù ví có nhiều tx. */
-  const anchorAsc = envNum("LOOKUP_TX_ANCHOR_ASC_OFFSET", 25, 0, 100);
-  if (anchorAsc > 0) {
-    const anchorN = Math.min(anchorAsc, offset);
-    const [ascA, ascB, ascC] = await Promise.all([
-      fetchEtherscanFamilyTxList({
-        apiBase: ETHERSCAN.apiBase,
-        chainId: ETHERSCAN.chainId,
-        apiKey,
-        address: targetChecksum,
-        offset: anchorN,
-        sort: "asc",
-      }),
-      fetchEtherscanFamilyTxList({
-        apiBase: ETHERSCAN.apiBase,
-        chainId: ETHERSCAN.chainId,
-        apiKey,
-        address: targetChecksum,
-        offset: anchorN,
-        action: "txlistinternal",
-        sort: "asc",
-      }),
-      fetchEtherscanFamilyTxList({
-        apiBase: ETHERSCAN.apiBase,
-        chainId: ETHERSCAN.chainId,
-        apiKey,
-        address: targetChecksum,
-        offset: anchorN,
-        action: "tokentx",
-        sort: "asc",
-      }),
-    ]);
-    txs = mergeTxEndpointsDedupe([txs, ascA.txs]);
-    internalTxs = mergeTxEndpointsDedupe([internalTxs, ascB.txs]);
-    tokenTxs = mergeTxEndpointsDedupe([tokenTxs, ascC.txs]);
-  }
+  /**
+   * Bản ghi cũ nhất (sort=asc) cho txlist / internal / token — cùng ý với enrich-source-data-csv
+   * (ENRICH_TX_OFFSET mặc định 100). Dùng tập này cho resolveChronologicalNamedCounterparty để
+   * timeline chrono liên tục từ đầu batch, không nhảy từ vài tx cũ sang khối “mới nhất”.
+   */
+  const [chronoAscA, chronoAscB, chronoAscC] = await Promise.all([
+    fetchEtherscanFamilyTxList({
+      apiBase: ETHERSCAN.apiBase,
+      chainId: ETHERSCAN.chainId,
+      apiKey,
+      address: targetChecksum,
+      offset: firstTxAscOffset,
+      sort: "asc",
+    }),
+    fetchEtherscanFamilyTxList({
+      apiBase: ETHERSCAN.apiBase,
+      chainId: ETHERSCAN.chainId,
+      apiKey,
+      address: targetChecksum,
+      offset: firstTxAscOffset,
+      action: "txlistinternal",
+      sort: "asc",
+    }),
+    fetchEtherscanFamilyTxList({
+      apiBase: ETHERSCAN.apiBase,
+      chainId: ETHERSCAN.chainId,
+      apiKey,
+      address: targetChecksum,
+      offset: firstTxAscOffset,
+      action: "tokentx",
+      sort: "asc",
+    }),
+  ]);
+  const chronoTxs = chronoAscA.txs;
+  const chronoInternalTxs = chronoAscB.txs;
+  const chronoTokenTxs = chronoAscC.txs;
+
+  txs = mergeTxEndpointsDedupe([txs, chronoTxs]);
+  internalTxs = mergeTxEndpointsDedupe([internalTxs, chronoInternalTxs]);
+  tokenTxs = mergeTxEndpointsDedupe([tokenTxs, chronoTokenTxs]);
 
   const perChainTxFetched: Record<string, number> = {
     [`${ETHERSCAN.name}:txlist`]: txs.length,
@@ -1214,16 +1220,16 @@ export async function POST(req: Request) {
   const nametagDelay = envNum("LOOKUP_NAMETAG_DELAY_MS", 520, 0, 5000);
   const chronoResult = await resolveChronologicalNamedCounterparty({
     targetLower,
-    txs,
-    internalTxs,
-    tokenTxs,
+    txs: chronoTxs,
+    internalTxs: chronoInternalTxs,
+    tokenTxs: chronoTokenTxs,
     entitiesMap,
     apiBase: ETHERSCAN.apiBase,
     chainId: ETHERSCAN.chainId,
     apiKey,
     maxNametagCalls: nametagChronoMax,
     delayMs: nametagDelay,
-    maxTxPerType: offset,
+    maxTxPerType: firstTxAscOffset,
   });
   const nametagAugment = { log: chronoResult.nametagLog };
   const firstTransaction = chronoResult.firstTransaction;

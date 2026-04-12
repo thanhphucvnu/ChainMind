@@ -35,8 +35,8 @@ const RULES: Array<{
   {
     test: (h) => /\b(binance|bnb\s*chain)\b/.test(h),
     out: {
-      country: "Malta",
-      countryHints: ["Malta", "France", "Singapore", "United Arab Emirates"],
+      country: "China",
+      countryHints: ["China", "Malta", "France", "Singapore", "United Arab Emirates"],
       type: "CEX",
     },
   },

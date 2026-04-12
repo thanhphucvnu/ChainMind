@@ -4667,8 +4667,9 @@
     "address": "0xDFd5293D8e347dFe59E90eFd55b2956a1343963d",
     "name": "Binance 16",
     "type": "CEX",
-    "country": "Malta",
+    "country": "China",
     "countryHints": [
+      "China",
       "Malta",
       "France",
       "Singapore",
@@ -4679,8 +4680,9 @@
     "address": "0x564286362092D8e7936f0549571a803B203aAceD",
     "name": "Binance 3",
     "type": "CEX",
-    "country": "Malta",
+    "country": "China",
     "countryHints": [
+      "China",
       "Malta",
       "France",
       "Singapore",
@@ -4700,8 +4702,9 @@
     "address": "0x9696f59E4d72E237BE84fFD425DCaD154Bf96976",
     "name": "Binance 18",
     "type": "CEX",
-    "country": "Malta",
+    "country": "China",
     "countryHints": [
+      "China",
       "Malta",
       "France",
       "Singapore",
@@ -4758,8 +4761,9 @@
     "address": "0x56Eddb7aa87536c09CCc2793473599fD21A8b17F",
     "name": "Binance 17",
     "type": "CEX",
-    "country": "Malta",
+    "country": "China",
     "countryHints": [
+      "China",
       "Malta",
       "France",
       "Singapore",

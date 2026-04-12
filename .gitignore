@@ -48,6 +48,10 @@ next-env.d.ts
 
 # Labeled wallet dataset (confidential — do not commit or push to GitHub)
 src/data/data.csv
+src/data/source-data.csv
+src/data/source-data.unknown-attempts.txt
+src/data/source-addresses.txt
+src/data/.crawl-recent-addresses.checkpoint.json
 # Subset cục bộ để test generate labels (không push)
 src/data/data.test.csv
 # Hướng dẫn verified labels (chỉ local — không push)
