@@ -13,7 +13,6 @@ function shortAddress(addr: string) {
 
 export default function LookupClient() {
   const [address, setAddress] = useState("");
-  const [maxTx, setMaxTx] = useState(200);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<LookupResponse | null>(null);
@@ -65,7 +64,7 @@ export default function LookupClient() {
       const res = await fetch("/api/lookup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ address: v, maxTx }),
+        body: JSON.stringify({ address: v }),
       });
       const json = await res.json().catch(() => null);
       if (!res.ok) {
@@ -107,26 +106,11 @@ export default function LookupClient() {
           </div>
         </div>
 
-        <div className="grid gap-2 sm:grid-cols-[1fr_180px] sm:items-end">
-          <div className="grid gap-2">
-            <label className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
-              Giới hạn số tx để phân tích
-            </label>
-            <input
-              type="number"
-              min={20}
-              max={2000}
-              step={20}
-              value={maxTx}
-              onChange={(e) => setMaxTx(Number(e.target.value))}
-              className="h-11 rounded-xl bg-zinc-50 dark:bg-black/30 ring-1 ring-zinc-200/70 dark:ring-white/10 px-4 text-sm text-zinc-900 dark:text-zinc-50 outline-none focus:ring-indigo-500/40"
-            />
-          </div>
-
+        <div className="grid gap-2">
           <button
             type="submit"
             disabled={!canSubmit || loading}
-            className="h-11 w-full sm:w-auto rounded-xl bg-indigo-600 px-4 text-sm font-semibold text-white transition hover:bg-indigo-500 disabled:opacity-50 disabled:hover:bg-indigo-600"
+            className="h-11 w-auto self-start rounded-xl bg-indigo-600 px-4 text-sm font-semibold text-white transition hover:bg-indigo-500 disabled:opacity-50 disabled:hover:bg-indigo-600"
           >
             <span className="inline-flex items-center justify-center gap-2">
               {loading ? (

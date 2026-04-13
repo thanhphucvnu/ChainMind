@@ -26,9 +26,37 @@ function labelsSuggestExchange(labels: string[]): boolean {
   return labels.some((l) => /exchange|cex|custody|hot\s*wallet/i.test(l));
 }
 
+function isNoisyNametag(s: string): boolean {
+  return /scam|phish|hack|exploit|spam|drainer|blocked/i.test(s.toLowerCase());
+}
+
 /** Etherscan hay gắn nhãn ví nóng sàn dạng "Bitbank 3", "Coinbase 10". */
 function nametagLooksLikeNumberedHotWallet(nt: string): boolean {
   return /^[a-zA-Z][a-zA-Z0-9]*\s+\d{1,4}$/.test(nt.trim());
+}
+
+async function scrapeEtherscanTitleName(checksum: string): Promise<string | null> {
+  const url = `https://etherscan.io/address/${checksum}`;
+  const res = await fetch(url, {
+    headers: {
+      Accept: "text/html,application/xhtml+xml",
+      "User-Agent":
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+    },
+    cache: "no-store",
+  });
+  if (!res.ok) return null;
+  const html = await res.text();
+  const m = html.match(/<title>([^<]{1,200})<\/title>/i);
+  if (!m) return null;
+  const title = m[1].replace(/\s+/g, " ").trim();
+  const first = title.split("|")[0]?.trim() ?? "";
+  if (!first || first.length < 2) return null;
+  if (/^address\s*[:\s]/i.test(first)) return null;
+  if (/\b0x[a-fA-F0-9]{8,}\b/.test(first)) return null;
+  if (/^ethereum\s*\(/i.test(first)) return null;
+  if (isNoisyNametag(first)) return null;
+  return first;
 }
 
 function counterpartyFromRow(
@@ -185,7 +213,51 @@ export async function resolveChronologicalNamedCounterparty(args: {
       nametagCalls += 1;
 
       if (!fetched.ok) {
-        log.push({ address: cp.cpChecksum, skipped: fetched.reason });
+        let scrapedName: string | null = null;
+        try {
+          scrapedName = await scrapeEtherscanTitleName(cp.cpChecksum);
+        } catch {
+          // ignore scrape errors, keep existing fallback behavior
+        }
+        if (scrapedName) {
+          const inferred = inferCexCountryFromLabelPieces([scrapedName]);
+          if (inferred) {
+            args.entitiesMap.set(cp.cpLower, {
+              address: cp.cpChecksum,
+              name: scrapedName,
+              type: inferred.type,
+              country: inferred.country,
+              countryHints: inferred.countryHints,
+            });
+            ent = args.entitiesMap.get(cp.cpLower);
+            log.push({
+              address: cp.cpChecksum,
+              nametag: scrapedName,
+              inferredCountry: inferred.country,
+            });
+            return {
+              firstTransaction: rowToInfo({
+                row,
+                direction: cp.direction,
+                counterparty: cp.cpChecksum,
+                chronologicalIndex: i + 1,
+                chronologicalTotalCount: total,
+                namedCounterpartyResolved: true,
+                ent,
+                exchangeOrEntityName: scrapedName,
+                maxTxPerType: args.maxTxPerType,
+              }),
+              nametagLog: log,
+            };
+          }
+          log.push({
+            address: cp.cpChecksum,
+            nametag: scrapedName,
+            skipped: "scrape_no_brand_match",
+          });
+        } else {
+          log.push({ address: cp.cpChecksum, skipped: fetched.reason });
+        }
         if (nametagCalls === 1 && nametagTierLikelyBlocked(fetched.reason)) {
           abortNametag = true;
         }
@@ -193,6 +265,10 @@ export async function resolveChronologicalNamedCounterparty(args: {
       }
 
       const nt = fetched.row.nametag.trim();
+      if (isNoisyNametag(nt)) {
+        log.push({ address: cp.cpChecksum, skipped: "noisy_nametag" });
+        continue;
+      }
       const labels = fetched.row.labels ?? [];
       const pieces = [nt, ...labels];
       const inferred = inferCexCountryFromLabelPieces(pieces);

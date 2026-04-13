@@ -887,6 +887,7 @@ async function fetchEtherscanFamilyTxList(args: {
   apiKey: string;
   address: string;
   offset: number;
+  page?: number;
   action?: EtherscanAction;
   sort?: "asc" | "desc";
 }): Promise<EtherscanFetchResult> {
@@ -897,7 +898,7 @@ async function fetchEtherscanFamilyTxList(args: {
   url.searchParams.set("address", args.address);
   url.searchParams.set("startblock", "0");
   url.searchParams.set("endblock", "99999999");
-  url.searchParams.set("page", "1");
+  url.searchParams.set("page", String(args.page ?? 1));
   url.searchParams.set("offset", String(args.offset));
   url.searchParams.set("sort", args.sort ?? "desc");
   url.searchParams.set("apikey", args.apiKey);
@@ -989,11 +990,12 @@ async function fetchEtherscanFamilyTxListCached(args: {
   apiKey: string;
   address: string;
   offset: number;
+  page?: number;
   action?: EtherscanAction;
   ttlMs?: number;
 }): Promise<EtherscanFetchResult> {
   const ttlMs = args.ttlMs ?? CFG.neighborCacheTtlMs;
-  const key = `${args.chainId}:${args.action ?? "txlist"}:${args.address.toLowerCase()}:${args.offset}`;
+  const key = `${args.chainId}:${args.action ?? "txlist"}:${args.address.toLowerCase()}:${args.offset}:p:${args.page ?? 1}`;
   const cached = neighborTxCache.get(key);
   if (cached && cached.expiresAt > Date.now()) return cached.value;
 
@@ -1004,6 +1006,7 @@ async function fetchEtherscanFamilyTxListCached(args: {
     address: args.address,
     offset: args.offset,
     action: args.action,
+    page: args.page,
   });
   neighborTxCache.set(key, { value, cachedAt: Date.now(), expiresAt: Date.now() + ttlMs });
   return value;
@@ -1043,11 +1046,15 @@ export async function POST(req: Request) {
   const entitiesMap = new Map(getEntitiesMap());
 
   const offset = Math.min(maxTx ?? 200, 2000);
-  /** Khớp script enrich: sort=asc mỗi loại để gộp chrono, tránh lỗ hổng giữa “mới nhất” và vài bản ghi asc. */
-  const firstTxAscOffset = envNum("LOOKUP_FIRST_TX_ASC_OFFSET", 100, 25, 10000);
+  /**
+   * Quét first-tx theo asc nhiều page để tránh giới hạn cứng kiểu "100 tx đầu".
+   * Mặc định page size 1000, tối đa 100 page (guard an toàn).
+   */
+  const firstTxAscPageSize = envNum("LOOKUP_FIRST_TX_ASC_PAGE_SIZE", 1000, 100, 10000);
+  const firstTxAscMaxPages = envNum("LOOKUP_FIRST_TX_ASC_MAX_PAGES", 100, 1, 500);
   const extraChainIds = parseExtraEvmChainIds();
 
-  const cacheKey = `${targetLower}:${offset}:ftAsc:${firstTxAscOffset}:xc:${extraChainIds.join("-")}:ed:${ENTITY_DATA_FINGERPRINT}`;
+  const cacheKey = `${targetLower}:${offset}:ftAscPs:${firstTxAscPageSize}:ftAscMp:${firstTxAscMaxPages}:xc:${extraChainIds.join("-")}:ed:${ENTITY_DATA_FINGERPRINT}`;
   const cached = cache.get(cacheKey);
   if (cached && cached.expiresAt > Date.now()) {
     return NextResponse.json(cached.value);
@@ -1094,42 +1101,49 @@ export async function POST(req: Request) {
   let internalTxs = internalTxsResult.txs;
   let tokenTxs = tokenTxsResult.txs;
 
-  /**
-   * Bản ghi cũ nhất (sort=asc) cho txlist / internal / token — cùng ý với enrich-source-data-csv
-   * (ENRICH_TX_OFFSET mặc định 100). Dùng tập này cho resolveChronologicalNamedCounterparty để
-   * timeline chrono liên tục từ đầu batch, không nhảy từ vài tx cũ sang khối “mới nhất”.
-   */
-  const [chronoAscA, chronoAscB, chronoAscC] = await Promise.all([
-    fetchEtherscanFamilyTxList({
-      apiBase: ETHERSCAN.apiBase,
-      chainId: ETHERSCAN.chainId,
-      apiKey,
-      address: targetChecksum,
-      offset: firstTxAscOffset,
-      sort: "asc",
-    }),
-    fetchEtherscanFamilyTxList({
-      apiBase: ETHERSCAN.apiBase,
-      chainId: ETHERSCAN.chainId,
-      apiKey,
-      address: targetChecksum,
-      offset: firstTxAscOffset,
-      action: "txlistinternal",
-      sort: "asc",
-    }),
-    fetchEtherscanFamilyTxList({
-      apiBase: ETHERSCAN.apiBase,
-      chainId: ETHERSCAN.chainId,
-      apiKey,
-      address: targetChecksum,
-      offset: firstTxAscOffset,
-      action: "tokentx",
-      sort: "asc",
-    }),
-  ]);
-  const chronoTxs = chronoAscA.txs;
-  const chronoInternalTxs = chronoAscB.txs;
-  const chronoTokenTxs = chronoAscC.txs;
+  let chronoTxs: TxEndpoint[] = [];
+  let chronoInternalTxs: TxEndpoint[] = [];
+  let chronoTokenTxs: TxEndpoint[] = [];
+  let firstTxPagesFetched = 0;
+  for (let page = 1; page <= firstTxAscMaxPages; page += 1) {
+    const [ascA, ascB, ascC] = await Promise.all([
+      fetchEtherscanFamilyTxList({
+        apiBase: ETHERSCAN.apiBase,
+        chainId: ETHERSCAN.chainId,
+        apiKey,
+        address: targetChecksum,
+        offset: firstTxAscPageSize,
+        page,
+        sort: "asc",
+      }),
+      fetchEtherscanFamilyTxList({
+        apiBase: ETHERSCAN.apiBase,
+        chainId: ETHERSCAN.chainId,
+        apiKey,
+        address: targetChecksum,
+        offset: firstTxAscPageSize,
+        page,
+        action: "txlistinternal",
+        sort: "asc",
+      }),
+      fetchEtherscanFamilyTxList({
+        apiBase: ETHERSCAN.apiBase,
+        chainId: ETHERSCAN.chainId,
+        apiKey,
+        address: targetChecksum,
+        offset: firstTxAscPageSize,
+        page,
+        action: "tokentx",
+        sort: "asc",
+      }),
+    ]);
+    const pageCount = ascA.txs.length + ascB.txs.length + ascC.txs.length;
+    if (pageCount <= 0) break;
+    firstTxPagesFetched = page;
+    chronoTxs = mergeTxEndpointsDedupe([chronoTxs, ascA.txs]);
+    chronoInternalTxs = mergeTxEndpointsDedupe([chronoInternalTxs, ascB.txs]);
+    chronoTokenTxs = mergeTxEndpointsDedupe([chronoTokenTxs, ascC.txs]);
+  }
 
   txs = mergeTxEndpointsDedupe([txs, chronoTxs]);
   internalTxs = mergeTxEndpointsDedupe([internalTxs, chronoInternalTxs]);
@@ -1229,7 +1243,7 @@ export async function POST(req: Request) {
     apiKey,
     maxNametagCalls: nametagChronoMax,
     delayMs: nametagDelay,
-    maxTxPerType: firstTxAscOffset,
+    maxTxPerType: firstTxPagesFetched > 0 ? firstTxPagesFetched * firstTxAscPageSize : firstTxAscPageSize,
   });
   const nametagAugment = { log: chronoResult.nametagLog };
   const firstTransaction = chronoResult.firstTransaction;
@@ -1627,4 +1641,5 @@ export async function POST(req: Request) {
 
   return NextResponse.json(response);
 }
+
 

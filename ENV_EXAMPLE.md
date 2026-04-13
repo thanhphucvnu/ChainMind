@@ -28,8 +28,9 @@
 Các biến chi tiết bên trên sẽ **override** profile.
 
 ### Giao dịch đầu chuỗi (chrono — khớp script enrich)
-- `LOOKUP_FIRST_TX_ASC_OFFSET`: số giao dịch **cũ nhất** mỗi loại (`txlist` / `txlistinternal` / `tokentx`) lấy với `sort=asc`, dùng **riêng** cho bước `resolveChronologicalNamedCounterparty` (giao dịch đầu / đối tác sàn trên web). Mặc định `100`, cùng ý với `ENRICH_TX_OFFSET` trong `enrich-source-data-csv.ts`. Tăng nếu ví cực đông tx mà tín hiệu đầu chuỗi vẫn lệch (tốn thêm 3 request Etherscan mỗi lần lookup).
-- (Đã thay thế `LOOKUP_TX_ANCHOR_ASC_OFFSET`: không còn dùng; cửa sổ asc tách bạch như trên.)
+- `LOOKUP_FIRST_TX_ASC_PAGE_SIZE`: số bản ghi mỗi page khi quét `sort=asc` cho first-tx (`txlist` / `txlistinternal` / `tokentx`). Mặc định `1000` (max `10000`).
+- `LOOKUP_FIRST_TX_ASC_MAX_PAGES`: số page tối đa cho vòng quét asc first-tx. Mặc định `100`. Tăng nếu ví cực nhiều giao dịch lịch sử.
+- Cơ chế này thay cho giới hạn cứng 100: backend quét asc theo page cho đến khi hết dữ liệu (hoặc chạm max pages), rồi mới resolve first-transaction / tên sàn.
 
 ### Đa chuỗi + tín hiệu sớm (tùy chọn — tăng độ phủ on-chain)
 - `LOOKUP_EXTRA_CHAIN_IDS`: danh sách `chainId` Etherscan API v2 (cùng key `ETHERSCAN_API_KEY`), cách nhau dấu phẩy. Ví dụ: `8453,42161,137` (Base, Arbitrum, Polygon). Mặc định rỗng = chỉ Ethereum.
