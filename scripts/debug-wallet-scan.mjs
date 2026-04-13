@@ -19,8 +19,17 @@ try {
 } catch {
   /* optional */
 }
-const key =
-  envText.match(/^ETHERSCAN_API_KEY=(.*)$/m)?.[1]?.trim().replace(/^["']|["']$/g, "") ?? "";
+function pickEtherscanKey(text) {
+  const fromFile = (re) => text.match(re)?.[1]?.trim().replace(/^["']|["']$/g, "") ?? "";
+  return (
+    process.env.ETHERSCAN_API_KEY_CRAWL?.trim() ||
+    fromFile(/^ETHERSCAN_API_KEY_CRAWL=(.*)$/m) ||
+    process.env.ETHERSCAN_API_KEY?.trim() ||
+    fromFile(/^ETHERSCAN_API_KEY=(.*)$/m) ||
+    ""
+  );
+}
+const key = pickEtherscanKey(envText);
 
 function u(action, sort, offset) {
   const x = new URL("https://api.etherscan.io/v2/api");

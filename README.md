@@ -7,7 +7,8 @@ Lưu ý: Đây **không** phải suy luận on-chain chắc chắn về quốc g
 ## Setup
 
 1. Lấy API key từ các explorer (Etherscan-family) tuỳ chain bạn muốn bật:
-   - `ETHERSCAN_API_KEY` (Ethereum)
+   - `ETHERSCAN_API_KEY` (Ethereum — dùng chung nếu chỉ một key)
+   - Tuỳ chọn tách pool: `ETHERSCAN_API_KEY_WEB` (chỉ app `/api/lookup`), `ETHERSCAN_API_KEY_CRAWL` (script enrich/sync); xem `ENV_EXAMPLE.md`.
    - `BSCSCAN_API_KEY` (BSC)
    - `POLYGONSCAN_API_KEY` (Polygon)
    - `ARBISCAN_API_KEY` (Arbitrum)
@@ -44,7 +45,7 @@ Mở `http://localhost:3000`.
 
 1. Push code lên GitHub.
 2. Import repo vào Vercel.
-3. Set `ETHERSCAN_API_KEY`.
+3. Set `ETHERSCAN_API_KEY_WEB` (hoặc `ETHERSCAN_API_KEY`).
 4. Deploy.
 
 ## Tuning (optional)

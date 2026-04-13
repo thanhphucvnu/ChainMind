@@ -52,10 +52,17 @@ type ChainConfig = {
 // Ethereum + optional extra EVM chainids on the same Etherscan API v2 key.
 const ETHERSCAN: ChainConfig = {
   name: "ethereum",
-  keyEnv: "ETHERSCAN_API_KEY",
+  /** Chỉ để tham chiếu; key thực tế lấy qua `etherscanApiKeyForWeb()`. */
+  keyEnv: "ETHERSCAN_API_KEY_WEB",
   apiBase: "https://api.etherscan.io/v2/api",
   chainId: "1",
 };
+
+function etherscanApiKeyForWeb(): string | undefined {
+  const web = process.env.ETHERSCAN_API_KEY_WEB?.trim();
+  if (web) return web;
+  return process.env.ETHERSCAN_API_KEY?.trim();
+}
 
 function parseExtraEvmChainIds(): string[] {
   const raw = process.env.LOOKUP_EXTRA_CHAIN_IDS?.trim();
@@ -1060,12 +1067,12 @@ export async function POST(req: Request) {
     return NextResponse.json(cached.value);
   }
 
-  const apiKey = process.env[ETHERSCAN.keyEnv];
+  const apiKey = etherscanApiKeyForWeb();
   if (!apiKey || typeof apiKey !== "string") {
     return NextResponse.json(
       {
         error:
-          "Thiếu biến môi trường `ETHERSCAN_API_KEY`. Vui lòng set key Etherscan rồi redeploy.",
+          "Thiếu `ETHERSCAN_API_KEY_WEB` hoặc `ETHERSCAN_API_KEY` (fallback). Set một trong hai trên host deploy.",
       },
       { status: 500 }
     );

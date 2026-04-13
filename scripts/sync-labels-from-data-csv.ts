@@ -10,7 +10,7 @@
  *   npx tsx scripts/sync-labels-from-data-csv.ts [--dry-run]
  *
  * Biến môi trường (tùy chọn):
- *   ETHERSCAN_API_KEY — thử API trước khi scrape
+ *   ETHERSCAN_API_KEY_CRAWL — ưu tiên; ETHERSCAN_API_KEY — fallback
  *   CSV_SYNC_SCRAPE_DELAY_MS — mặc định 550 (giữa mỗi lần fetch HTML)
  */
 import fs from "node:fs";
@@ -51,9 +51,13 @@ function loadApiKey(): string {
   } catch {
     /* empty */
   }
+  const fromFile = (key: string): string =>
+    raw.match(new RegExp(`^${key}=(.*)$`, "m"))?.[1]?.trim().replace(/^["']|["']$/g, "") ?? "";
   return (
+    process.env.ETHERSCAN_API_KEY_CRAWL?.trim() ||
+    fromFile("ETHERSCAN_API_KEY_CRAWL") ||
     process.env.ETHERSCAN_API_KEY?.trim() ||
-    raw.match(/^ETHERSCAN_API_KEY=(.*)$/m)?.[1]?.trim().replace(/^["']|["']$/g, "") ||
+    fromFile("ETHERSCAN_API_KEY") ||
     ""
   );
 }
@@ -285,7 +289,7 @@ async function main() {
   const dryRun = process.argv.includes("--dry-run");
   const apiKey = loadApiKey();
   if (!apiKey) {
-    console.error("Cần ETHERSCAN_API_KEY trong .env để tải txlist / tokentx / internal.");
+    console.error("Cần ETHERSCAN_API_KEY_CRAWL hoặc ETHERSCAN_API_KEY trong .env để tải txlist / tokentx / internal.");
     process.exit(1);
   }
 

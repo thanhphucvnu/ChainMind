@@ -1,7 +1,13 @@
 ## Env variables
 
-### Required
-- `ETHERSCAN_API_KEY`: API key để backend gọi Etherscan.
+### Required (một trong các cách sau)
+- **`ETHERSCAN_API_KEY_WEB`**: key chỉ dùng cho **Next.js `/api/lookup`** (deploy). Giảm xung đột rate limit với script crawl/enrich.
+- **`ETHERSCAN_API_KEY`**: fallback nếu không set `ETHERSCAN_API_KEY_WEB` (local đơn giản: chỉ cần biến này cho cả web + script).
+
+### Script crawl / enrich (tùy chọn, tách pool)
+- **`ETHERSCAN_API_KEY_CRAWL`**: key dùng cho `enrich-source-data-csv`, `sync-labels-from-data-csv`, `debug-wallet-scan.mjs`. Nếu không set, script dùng `ETHERSCAN_API_KEY`.
+
+**Gợi ý tách pool:** deploy đặt `ETHERSCAN_API_KEY_WEB=keyA`; máy chạy batch đặt `ETHERSCAN_API_KEY_CRAWL=keyB` (và có thể giữ `ETHERSCAN_API_KEY` trùng một trong hai để tool khác không đổi).
 
 ### Optional tuning (lookup engine)
 - `LOOKUP_PROFILE` (default `balanced`, values: `safe` | `balanced` | `aggressive`)
@@ -33,7 +39,7 @@ Các biến chi tiết bên trên sẽ **override** profile.
 - Cơ chế này thay cho giới hạn cứng 100: backend quét asc theo page cho đến khi hết dữ liệu (hoặc chạm max pages), rồi mới resolve first-transaction / tên sàn.
 
 ### Đa chuỗi + tín hiệu sớm (tùy chọn — tăng độ phủ on-chain)
-- `LOOKUP_EXTRA_CHAIN_IDS`: danh sách `chainId` Etherscan API v2 (cùng key `ETHERSCAN_API_KEY`), cách nhau dấu phẩy. Ví dụ: `8453,42161,137` (Base, Arbitrum, Polygon). Mặc định rỗng = chỉ Ethereum.
+- `LOOKUP_EXTRA_CHAIN_IDS`: danh sách `chainId` Etherscan API v2 (cùng key web: `ETHERSCAN_API_KEY_WEB` hoặc fallback `ETHERSCAN_API_KEY`), cách nhau dấu phẩy. Ví dụ: `8453,42161,137` (Base, Arbitrum, Polygon). Mặc định rỗng = chỉ Ethereum.
 - `LOOKUP_EXTRA_CHAIN_MAX`: tối đa số chain phụ (mặc định `3`, max `8`).
 - `LOOKUP_EXTRA_CHAIN_TX_OFFSET`: số tx tối đa mỗi loại (txlist / internal / token) trên mỗi chain phụ (mặc định `150`).
 - `LOOKUP_EARLY_ENTITY_WEIGHT`: trọng số trộn “đối tác đã gắn nhãn trong các giao dịch **sớm nhất**” (CEX/bridge…), `0..1.5` (mặc định `0.48`).

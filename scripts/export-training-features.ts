@@ -4,7 +4,7 @@
  * Usage:
  *   npm run train:export -- --input training/examples/labels.jsonl --out training/data/features.jsonl
  *
- * Requires `npm run dev` (or set LOOKUP_BASE_URL) and ETHERSCAN_API_KEY in .env
+ * Requires `npm run dev` (or set LOOKUP_BASE_URL) and `ETHERSCAN_API_KEY_WEB` or `ETHERSCAN_API_KEY` in .env
  */
 
 import { createWriteStream, readFileSync, existsSync, mkdirSync } from "fs";

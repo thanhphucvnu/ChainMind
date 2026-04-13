@@ -11,7 +11,8 @@
  * File địa chỉ đầu vào cũng được lọc trùng theo thứ tự xuất hiện.
  *
  * Env:
- *   ETHERSCAN_API_KEY — bắt buộc
+ *   ETHERSCAN_API_KEY_CRAWL — ưu tiên cho script (tách pool với web)
+ *   ETHERSCAN_API_KEY — fallback nếu không set CRAWL
  *   ENRICH_TX_DELAY_MS — mặc định 200 (giữa mỗi request Etherscan; ~5 req/s free tier)
  *   ENRICH_TX_OFFSET — mặc định 100 (offset sort=asc mỗi loại)
  *   ENRICH_SCRAPE_DELAY_MS — mặc định 450 (trước khi scrape HTML fallback)
@@ -102,9 +103,13 @@ function loadApiKey(): string {
   } catch {
     /* empty */
   }
+  const fromFile = (key: string): string =>
+    raw.match(new RegExp(`^${key}=(.*)$`, "m"))?.[1]?.trim().replace(/^["']|["']$/g, "") ?? "";
   return (
+    process.env.ETHERSCAN_API_KEY_CRAWL?.trim() ||
+    fromFile("ETHERSCAN_API_KEY_CRAWL") ||
     process.env.ETHERSCAN_API_KEY?.trim() ||
-    raw.match(/^ETHERSCAN_API_KEY=(.*)$/m)?.[1]?.trim().replace(/^["']|["']$/g, "") ||
+    fromFile("ETHERSCAN_API_KEY") ||
     ""
   );
 }
@@ -469,7 +474,7 @@ async function main() {
 
   const apiKey = loadApiKey();
   if (!apiKey) {
-    console.error("Cần ETHERSCAN_API_KEY trong .env hoặc biến môi trường.");
+    console.error("Cần ETHERSCAN_API_KEY_CRAWL hoặc ETHERSCAN_API_KEY trong .env / biến môi trường.");
     process.exit(1);
   }
 
